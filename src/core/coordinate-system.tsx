@@ -23,7 +23,7 @@ export const CoordinateSystem = ({ func }: CoordinateSystemProps) => {
 
   return (
     <main className="w-screen h-screen">
-      <svg viewBox={`0 0 ${size} ${size}`} className="w-full h-full">
+      <svg viewBox={`0 0 ${size} ${size}`} className="w-full h-full p-4">
         <Grid origin={origin} scaleX={scaleX} scaleY={scaleY} />
         <Plot
           func={func}
@@ -33,6 +33,10 @@ export const CoordinateSystem = ({ func }: CoordinateSystemProps) => {
           scaleY={scaleY}
         />
       </svg>
+
+      <span className="absolute bottom-0 right-0 p-4 font-semibold text-xl">
+        {func.toString()}
+      </span>
     </main>
   );
 };

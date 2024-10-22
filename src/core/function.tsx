@@ -8,4 +8,8 @@ export class Function {
   evaluate(x: number): number {
     return this.func(x);
   }
+
+  toString(): string {
+    return `f(x) = ${this.func.toString().replace("(x) => ", "")}`;
+  }
 }

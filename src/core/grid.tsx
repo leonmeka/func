@@ -47,7 +47,7 @@ export const Grid = ({ origin, scaleX, scaleY }: GridProps) => {
           key={`x-label-${x}`}
           x={svgX}
           y={origin.y + 20}
-          fontSize="10"
+          fontSize="14"
           textAnchor="middle"
           fill="gray"
         >
@@ -90,7 +90,7 @@ export const Grid = ({ origin, scaleX, scaleY }: GridProps) => {
           key={`y-label-${y}`}
           x={origin.x - 20}
           y={svgY + 4}
-          fontSize="10"
+          fontSize="14"
           textAnchor="end"
           fill="gray"
         >
