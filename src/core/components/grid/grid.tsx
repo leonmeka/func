@@ -26,10 +26,7 @@ export const Grid = () => {
   const labelsX = [];
   const labelsY = [];
 
-  console.log("STEPS:", Math.floor(rangeX[1] * step))
-  console.log("STEPS:", Math.floor(rangeY[1] * step))
-
-  for (let x = visibleMinX; x <= visibleMaxX; x += Math.floor(rangeX[1] * step)) {
+  for (let x = visibleMinX; x <= visibleMaxX; x += step) {
     const svgX = origin.x + x * scaleX;
     gridLinesX.push(
       <line
@@ -70,7 +67,7 @@ export const Grid = () => {
     }
   }
 
-  for (let y = visibleMinY; y <= visibleMaxY; y += Math.floor(rangeY[1] * step)) {
+  for (let y = visibleMinY; y <= visibleMaxY; y += step) {
     const svgY = origin.y - y * scaleY;
     gridLinesY.push(
       <line

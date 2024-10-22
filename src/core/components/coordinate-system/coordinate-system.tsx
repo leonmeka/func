@@ -4,11 +4,17 @@ import { usePan } from "@/core/hooks/use-pan";
 
 import {
   CoordinateSystemContext,
-  initialContext,
 } from "@/core/components/coordinate-system/coordinate-system.context";
 import { useResize } from "@/core/hooks/use-resize";
+import { Range } from "@/core/models";
 
-export const CoordinateSystem = ({ children }: PropsWithChildren) => {
+interface CoordinateSystemProps {
+  rangeX: Range;
+  rangeY: Range;
+  step: number;
+}
+
+export const CoordinateSystem = ({ rangeX, rangeY, step, children }: PropsWithChildren<CoordinateSystemProps>) => {
   const {
     dimensions: { width, height },
   } = useResize();
@@ -21,8 +27,8 @@ export const CoordinateSystem = ({ children }: PropsWithChildren) => {
   } = usePan();
   const origin = { x: width / 2, y: height / 2 };
 
-  const [minX, maxX] = initialContext.rangeX;
-  const [minY, maxY] = initialContext.rangeY;
+  const [minX, maxX] = rangeX;
+  const [minY, maxY] = rangeY;
 
   const scaleX = width / (maxX - minX);
   const scaleY = height / (maxY - minY);
@@ -30,14 +36,14 @@ export const CoordinateSystem = ({ children }: PropsWithChildren) => {
   return (
     <CoordinateSystemContext.Provider
       value={{
-        origin: origin,
-        rangeX: initialContext.rangeX,
-        rangeY: initialContext.rangeY,
+        origin,
+        rangeX,
+        rangeY,
         scaleX,
         scaleY,
         offsetX,
         offsetY,
-        step: initialContext.step,
+        step,
       }}
     >
       <main
