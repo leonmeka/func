@@ -8,14 +8,21 @@ interface FunctionProps {
 }
 
 export const Function = ({ y, color = "black" }: FunctionProps) => {
-  const { rangeX, step } = useContext(CoordinateSystemContext);
+  const {
+    step,
+    rangeX,
+    rangeY,
+    scaleX,
+    scaleY,
+    origin
+  } = useContext(CoordinateSystemContext);
 
   return (
     <path
-      d={generatePath(y, rangeX, step)}
+      d={generatePath(y, rangeX, rangeY, step, origin, scaleX, scaleY)}
       stroke={color}
       fill="none"
-      strokeWidth={5}
+      strokeWidth={2}
     />
   );
 };

@@ -1,44 +1,47 @@
 import { PropsWithChildren } from "react";
 
 import { usePan } from "@/core/hooks/use-pan";
-import { useResize } from "@/core/hooks/use-resize";
 
 import {
   CoordinateSystemContext,
   initialContext,
 } from "@/core/components/coordinate-system/coordinate-system.context";
+import { useResize } from "@/core/hooks/use-resize";
 
 export const CoordinateSystem = ({ children }: PropsWithChildren) => {
-  const { dimensions, rangeX, rangeY } = useResize({
-    initialRangeX: initialContext.rangeX,
-    initialRangeY: initialContext.rangeY,
-  });
+  const {
+    dimensions: { width, height },
+  } = useResize();
+  const {
+    offsetX,
+    offsetY,
+    handlePointerDown,
+    handlePointerMove,
+    handlePointerUp,
+  } = usePan();
+  const origin = { x: width / 2, y: height / 2 };
 
-  const { offsetX, offsetY, handlePointerDown, handlePointerMove, handlePointerUp } =
-    usePan();
+  const [minX, maxX] = initialContext.rangeX;
+  const [minY, maxY] = initialContext.rangeY;
 
-  const { width, height } = dimensions;
-
-  const adjustedRangeX: [number, number] = [
-    rangeX[0] + offsetX,
-    rangeX[1] + offsetX,
-  ];
-  const adjustedRangeY: [number, number] = [
-    rangeY[0] + offsetY,
-    rangeY[1] + offsetY,
-  ];
+  const scaleX = width / (maxX - minX);
+  const scaleY = height / (maxY - minY);
 
   return (
     <CoordinateSystemContext.Provider
       value={{
-        origin: initialContext.origin,
-        rangeX: adjustedRangeX,
-        rangeY: adjustedRangeY,
+        origin: origin,
+        rangeX: initialContext.rangeX,
+        rangeY: initialContext.rangeY,
+        scaleX,
+        scaleY,
+        offsetX,
+        offsetY,
         step: initialContext.step,
       }}
     >
       <main
-        className="w-screen h-screen select-none"
+        className="h-full w-full select-none"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -47,8 +50,8 @@ export const CoordinateSystem = ({ children }: PropsWithChildren) => {
         <svg
           className="w-full h-full"
           viewBox={`
-            ${adjustedRangeX[0]} 
-            ${adjustedRangeY[0]}
+            ${offsetX} 
+            ${offsetY}
             ${width} 
             ${height}
           `}

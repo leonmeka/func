@@ -1,15 +1,31 @@
+import { Range } from "@/core/models";
+import { Point } from "@/core/models";
+
 export const generatePath = (
-    y: (x: number) => number,
-    rangeX: [number, number],
-    step: number
+  y: (x: number) => number,
+  rangeX: Range,
+  rangeY: Range,
+  step: number,
+  origin: Point,
+  scaleX: number,
+  scaleY: number
 ) => {
-    return Array.from(
-        { length: Math.ceil((rangeX[1] - rangeX[0]) / step) + 1 },
-        (_, i) => {
-            const x = rangeX[0] + i * step;
-            const X = x;
-            const Y = -y(x);
-            return `${i === 0 ? "M" : "L"} ${X} ${Y}`;
-        }
-    ).join(" ");
+  const [minX, maxX] = rangeX;
+  const [minY, maxY] = rangeY;
+
+  const pathCommands = Array.from({ length: Math.ceil((maxX - minX) / step) + 1 }, (_, i) => {
+    const x = minX + i * step;
+    const yValue = y(x);
+
+    if (yValue < minY || yValue > maxY) return null;
+
+    const svgX = origin.x + x * scaleX;
+    const svgY = origin.y - yValue * scaleY;
+
+    return `${svgX} ${svgY}`;
+  }).filter(Boolean);
+
+  if (pathCommands.length === 0) return "";
+
+  return `M ${pathCommands[0]} ` + pathCommands.slice(1).map(cmd => `L ${cmd}`).join(" ");
 };

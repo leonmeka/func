@@ -4,9 +4,11 @@ import { Function } from "@/core/components/function/function";
 
 export const App = () => {
   return (
-    <CoordinateSystem>
-      <Grid />
-      <Function y={(x) => x} color="green" />
-    </CoordinateSystem>
+    <div className="w-dvw h-dvh" >
+      <CoordinateSystem>
+        <Grid />
+        <Function y={(x) => x * Math.tan(x)} color="blue" />
+      </CoordinateSystem>
+    </div>
   );
 };
