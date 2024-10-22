@@ -1,8 +1,12 @@
-import { CoordinateSystem } from "./core/coordinate-system.tsx";
-import { Function } from "./core/function.tsx";
-
-const sinF = new Function((x) => Math.sin(x) ** 3);
+import { CoordinateSystem } from "./core/components/coordinate-system/coordinate-system";
+import { Grid } from "@/core/components/grid/grid";
+import { Function } from "@/core/components/function/function";
 
 export const App = () => {
-  return <CoordinateSystem func={sinF} />;
+  return (
+    <CoordinateSystem>
+      <Grid />
+      <Function y={(x) => x} color="green" />
+    </CoordinateSystem>
+  );
 };
