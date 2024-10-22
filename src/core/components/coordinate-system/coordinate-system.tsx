@@ -11,10 +11,9 @@ import { Range } from "@/core/models";
 interface CoordinateSystemProps {
   rangeX: Range;
   rangeY: Range;
-  step: number;
 }
 
-export const CoordinateSystem = ({ rangeX, rangeY, step, children }: PropsWithChildren<CoordinateSystemProps>) => {
+export const CoordinateSystem = ({ rangeX, rangeY, children }: PropsWithChildren<CoordinateSystemProps>) => {
   const {
     dimensions: { width, height },
   } = useResize();
@@ -43,7 +42,6 @@ export const CoordinateSystem = ({ rangeX, rangeY, step, children }: PropsWithCh
         scaleY,
         offsetX,
         offsetY,
-        step,
       }}
     >
       <main

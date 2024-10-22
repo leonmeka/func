@@ -4,12 +4,12 @@ import { CoordinateSystemContext } from "@/core/components/coordinate-system/coo
 
 interface FunctionProps {
   y: (x: number) => number;
+  resolution: number;
   color?: string;
 }
 
-export const Function = ({ y, color = "black" }: FunctionProps) => {
+export const Function = ({ y, resolution, color = "black" }: FunctionProps) => {
   const {
-    step,
     rangeX,
     rangeY,
     scaleX,
@@ -19,8 +19,8 @@ export const Function = ({ y, color = "black" }: FunctionProps) => {
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
 
-  const pathCommands = Array.from({ length: Math.ceil((maxX - minX) / step) + 1 }, (_, i) => {
-    const x = minX + i * step;
+  const pathCommands = Array.from({ length: Math.ceil((maxX - minX) / resolution) + 1 }, (_, i) => {
+    const x = minX + i * resolution;
     const yValue = y(x);
 
     if (yValue < minY || yValue > maxY) return null;

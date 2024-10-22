@@ -1,8 +1,12 @@
 import { useContext } from "react";
 import { CoordinateSystemContext } from "@/core/components/coordinate-system/coordinate-system.context";
 
-export const Grid = () => {
-  const { origin, scaleX, scaleY, rangeX, rangeY, step, offsetX, offsetY } = useContext(
+interface GridProps {
+  steps: number;
+}
+
+export const Grid = ({ steps }: GridProps) => {
+  const { origin, scaleX, scaleY, rangeX, rangeY, offsetX, offsetY } = useContext(
     CoordinateSystemContext
   );
 
@@ -26,7 +30,7 @@ export const Grid = () => {
   const labelsX = [];
   const labelsY = [];
 
-  for (let x = visibleMinX; x <= visibleMaxX; x += step) {
+  for (let x = visibleMinX; x <= visibleMaxX; x += steps) {
     const svgX = origin.x + x * scaleX;
     gridLinesX.push(
       <line
@@ -67,7 +71,7 @@ export const Grid = () => {
     }
   }
 
-  for (let y = visibleMinY; y <= visibleMaxY; y += step) {
+  for (let y = visibleMinY; y <= visibleMaxY; y += steps) {
     const svgY = origin.y - y * scaleY;
     gridLinesY.push(
       <line
