@@ -9,11 +9,11 @@ import { useResize } from "@/core/hooks/use-resize";
 import { Range } from "@/core/models";
 
 interface CoordinateSystemProps {
-  rangeX: Range;
-  rangeY: Range;
+  rangeX?: Range;
+  rangeY?: Range;
 }
 
-export const CoordinateSystem = ({ rangeX, rangeY, children }: PropsWithChildren<CoordinateSystemProps>) => {
+export const CoordinateSystem = ({ rangeX = [-10, 10], rangeY = [-10, 10], children }: PropsWithChildren<CoordinateSystemProps>) => {
   const {
     dimensions: { width, height },
   } = useResize();

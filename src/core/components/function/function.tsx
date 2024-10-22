@@ -4,11 +4,11 @@ import { CoordinateSystemContext } from "@/core/components/coordinate-system/coo
 
 interface FunctionProps {
   y: (x: number) => number;
-  resolution: number;
+  resolution?: number;
   color?: string;
 }
 
-export const Function = ({ y, resolution, color = "black" }: FunctionProps) => {
+export const Function = ({ y, resolution = 0.1, color = "black" }: FunctionProps) => {
   const {
     rangeX,
     rangeY,

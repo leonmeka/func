@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { CoordinateSystemContext } from "@/core/components/coordinate-system/coordinate-system.context";
 
 interface GridProps {
-  steps: number;
+  steps?: number;
 }
 
-export const Grid = ({ steps }: GridProps) => {
+export const Grid = ({ steps = 1 }: GridProps) => {
   const { origin, scaleX, scaleY, rangeX, rangeY, offsetX, offsetY } = useContext(
     CoordinateSystemContext
   );
