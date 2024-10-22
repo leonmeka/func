@@ -14,7 +14,7 @@ export const CoordinateSystem = ({ children }: PropsWithChildren) => {
     initialRangeY: initialContext.rangeY,
   });
 
-  const { offsetX, offsetY, handleMouseDown, handleMouseMove, handleMouseUp } =
+  const { offsetX, offsetY, handlePointerDown, handlePointerMove, handlePointerUp } =
     usePan();
 
   const { width, height } = dimensions;
@@ -39,10 +39,10 @@ export const CoordinateSystem = ({ children }: PropsWithChildren) => {
     >
       <main
         className="w-screen h-screen select-none"
-        onPointerDown={handleMouseDown}
-        onPointerMove={handleMouseMove}
-        onPointerUp={handleMouseUp}
-        onPointerLeave={handleMouseUp}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
       >
         <svg
           className="w-full h-full"

@@ -8,13 +8,13 @@ export const usePan = () => {
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
 
-  const handleMouseDown = (e: React.PointerEvent) => {
+  const handlePointerDown = (e: React.PointerEvent) => {
     setIsPanning(true);
     setStartX(e.clientX);
     setStartY(e.clientY);
   };
 
-  const handleMouseMove = (e: React.PointerEvent) => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (!isPanning) return;
 
     setOffsetX((prevOffset) => prevOffset - (e.clientX - startX));
@@ -24,15 +24,15 @@ export const usePan = () => {
     setStartY(e.clientY);
   };
 
-  const handleMouseUp = () => {
+  const handlePointerUp = () => {
     setIsPanning(false);
   };
 
   return {
     offsetX,
     offsetY,
-    handleMouseDown,
-    handleMouseMove,
-    handleMouseUp,
+    handlePointerDown,
+    handlePointerMove,
+    handlePointerUp,
   };
 };
