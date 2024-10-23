@@ -4,10 +4,9 @@ import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.conte
 
 interface FunctionProps {
   y: (x: number) => number;
-  resolution?: number;
 }
 
-export const Function = ({ y: func, resolution = 0.1 }: FunctionProps) => {
+export const Function = ({ y: func }: FunctionProps) => {
   const { origin, rangeX, scale, offsetX, zoom } = useContext(
     CoordinateSystemContext
   );
@@ -20,6 +19,8 @@ export const Function = ({ y: func, resolution = 0.1 }: FunctionProps) => {
   // Add offset context to min, max ranges
   const extendedMinX = minX + normalizedOffset - 1;
   const extendedMaxX = maxX + normalizedOffset + 1;
+
+  const resolution = 0.1;
 
   // Generate path
   const pathCommands = Array.from(
