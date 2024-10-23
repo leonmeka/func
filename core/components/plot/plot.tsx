@@ -9,7 +9,6 @@ export const Plot = ({ children }: PropsWithChildren) => {
 
   return (
     <svg
-      className="h-full w-full"
       viewBox={`
       ${offsetX} 
       ${offsetY}

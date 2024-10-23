@@ -49,33 +49,33 @@ export const CoordinateSystem = ({
     Math.max(width / (maxX - minX), mousePosition.y / (maxY - minY)) * zoom;
 
   return (
-    <CoordinateSystemContext.Provider
-      value={{
-        origin,
-        width,
-        height,
-        rangeX,
-        rangeY,
-        scale,
-        offsetX,
-        offsetY,
-        zoom,
-      }}
-    >
-      <Theme theme={theme}>
-        <div
-          ref={ref}
-          className="h-full w-full select-none bg-background overflow-hidden"
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerLeave={handlePointerUp}
-          onMouseMove={handleMouseMove}
-          onWheel={handleWheel}
+    <Theme theme={theme}>
+      <div
+        ref={ref}
+        className="h-full w-full select-none bg-background overflow-hidden"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+        onMouseMove={handleMouseMove}
+        onWheel={handleWheel}
+      >
+        <CoordinateSystemContext.Provider
+          value={{
+            origin,
+            width,
+            height,
+            rangeX,
+            rangeY,
+            scale,
+            offsetX,
+            offsetY,
+            zoom,
+          }}
         >
           {children}
-        </div>
-      </Theme>
-    </CoordinateSystemContext.Provider>
+        </CoordinateSystemContext.Provider>
+      </div>
+    </Theme>
   );
 };
