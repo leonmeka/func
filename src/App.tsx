@@ -1,6 +1,6 @@
-import { CoordinateSystem } from "@/core/components/coordinate-system";
-import { Grid } from "@/core/components/grid";
-import { Function } from "@/core/components/function";
+import { CoordinateSystem } from "@core/components/coordinate-system";
+import { Grid } from "@core/components/grid";
+import { Function } from "@core/components/function";
 
 export const App = () => {
   return (

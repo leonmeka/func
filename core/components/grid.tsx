@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.context";
+import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
 
 export const Grid = () => {
   const { origin, scale, rangeX, rangeY, offsetX, offsetY, zoom } = useContext(

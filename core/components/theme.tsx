@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
 
-import { Theme as ThemeType } from "@/core/types";
+import { Theme as ThemeType } from "@core/types";
 
-import { useDetectTheme } from "@/core/hooks/use-detect-theme";
+import { useDetectTheme } from "@core/hooks/use-detect-theme";
 
 interface ThemeProps {
   theme: ThemeType;
