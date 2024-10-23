@@ -6,7 +6,7 @@ import { useZoom } from "@/core/hooks/use-zoom";
 import { useResize } from "@/core/hooks/use-resize";
 import { usePan } from "@/core/hooks/use-pan";
 
-import { Range, Theme as ThemeType } from "@/core/models";
+import { Range, Theme as ThemeType } from "@/core/types";
 
 import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.context";
 

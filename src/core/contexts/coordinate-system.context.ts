@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { Point } from "@/core/models";
+import { Point } from "@/core/types";
 
 interface CoordinateSystemContextProps {
   origin: Point;
