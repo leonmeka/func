@@ -56,7 +56,7 @@ export const CoordinateSystem = ({
     >
       <svg
         ref={ref}
-        className="h-full w-full select-none"
+        className="h-full w-full select-none bg-background"
         viewBox={`
             ${offsetX} 
             ${offsetY}

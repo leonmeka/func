@@ -7,8 +7,9 @@ interface GridProps {
 }
 
 export const Grid = ({ steps = 1 }: GridProps) => {
-  const { origin, scale, rangeX, rangeY, offsetX, offsetY, zoom } =
-    useContext(CoordinateSystemContext);
+  const { origin, scale, rangeX, rangeY, offsetX, offsetY, zoom } = useContext(
+    CoordinateSystemContext
+  );
 
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
@@ -36,16 +37,16 @@ export const Grid = ({ steps = 1 }: GridProps) => {
   const labelsY = [];
 
   for (let i = extendedMinX; i <= extendedMaxX; i += steps) {
-    const x = origin.x + (i * scale);
+    const x = origin.x + i * scale;
 
     gridLinesX.push(
       <line
+        className="stroke-muted"
         key={`x-grid-${i}`}
         x1={x}
         y1={offsetY}
         x2={x}
         y2={offsetY + svgHeight}
-        stroke="lightgray"
         strokeWidth={1 * zoom}
       />
     );
@@ -53,24 +54,24 @@ export const Grid = ({ steps = 1 }: GridProps) => {
     if (i !== 0) {
       ticksX.push(
         <line
+          className="stroke-muted"
           key={`x-tick-${i}`}
           x1={x}
-          y1={origin.y - 5 * zoom}
+          y1={origin.y - 8 * zoom}
           x2={x}
-          y2={origin.y + 5 * zoom}
-          stroke="lightgray"
-          strokeWidth={2 * zoom}
+          y2={origin.y + 8 * zoom}
+          strokeWidth={5 * zoom}
         />
       );
 
       labelsX.push(
         <text
+          className="fill-muted-foreground"
           key={`x-label-${i}`}
           x={x}
           y={origin.y + 20 * zoom}
           fontSize={12 * zoom}
           textAnchor="middle"
-          fill="gray"
         >
           {i}
         </text>
@@ -79,16 +80,16 @@ export const Grid = ({ steps = 1 }: GridProps) => {
   }
 
   for (let i = extendedMinY; i <= extendedMaxY; i += steps) {
-    const y = origin.y - (i * scale);
+    const y = origin.y - i * scale;
 
     gridLinesY.push(
       <line
+        className="stroke-muted"
         key={`y-grid-${i}`}
         x1={offsetX}
         y1={y}
         x2={offsetX + svgWidth}
         y2={y}
-        stroke="lightgray"
         strokeWidth={1 * zoom}
       />
     );
@@ -96,24 +97,24 @@ export const Grid = ({ steps = 1 }: GridProps) => {
     if (i !== 0) {
       ticksY.push(
         <line
+          className="stroke-muted"
           key={`y-tick-${i}`}
-          x1={origin.x - 5 * zoom}
+          x1={origin.x - 8 * zoom}
           y1={y}
-          x2={origin.x + 5 * zoom}
+          x2={origin.x + 8 * zoom}
           y2={y}
-          stroke="lightgray"
-          strokeWidth={2 * zoom}
+          strokeWidth={5 * zoom}
         />
       );
 
       labelsY.push(
         <text
+          className="fill-muted-foreground"
           key={`y-label-${i}`}
           x={origin.x + 20 * zoom}
           y={y + 5 * zoom}
           fontSize={12 * zoom}
           textAnchor="end"
-          fill="gray"
         >
           {i}
         </text>
@@ -137,20 +138,20 @@ export const Grid = ({ steps = 1 }: GridProps) => {
 
       {/* Axes lines */}
       <line
+        className="stroke-muted"
         x1={offsetX}
         y1={origin.y}
         x2={offsetX + svgWidth}
         y2={origin.y}
-        stroke="lightgray"
-        strokeWidth={2 * zoom}
+        strokeWidth={5 * zoom}
       />
       <line
+        className="stroke-muted"
         x1={origin.x}
         y1={offsetY}
         x2={origin.x}
         y2={offsetY + svgHeight}
-        stroke="lightgray"
-        strokeWidth={2 * zoom}
+        strokeWidth={5 * zoom}
       />
     </g>
   );

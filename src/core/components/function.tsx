@@ -5,14 +5,9 @@ import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.conte
 interface FunctionProps {
   y: (x: number) => number;
   resolution?: number;
-  color?: string;
 }
 
-export const Function = ({
-  y: func,
-  resolution = 0.1,
-  color = "black",
-}: FunctionProps) => {
+export const Function = ({ y: func, resolution = 0.1 }: FunctionProps) => {
   const { origin, rangeX, scale, offsetX, zoom } = useContext(
     CoordinateSystemContext
   );
@@ -29,9 +24,7 @@ export const Function = ({
   // Generate path
   const pathCommands = Array.from(
     {
-      length:
-        Math.ceil((extendedMaxX - extendedMinX) / resolution) +
-        1,
+      length: Math.ceil((extendedMaxX - extendedMinX) / resolution) + 1,
     },
     (_, i) => {
       const x = extendedMinX + i * resolution;
@@ -51,6 +44,11 @@ export const Function = ({
   const path = `M ${pathCommands.join(" L ")}`;
 
   return (
-    <path d={path} stroke={color} fill="none" strokeWidth={2 * zoom} />
+    <path
+      d={path}
+      fill="none"
+      strokeWidth={2 * zoom}
+      className="stroke-primary"
+    />
   );
 };
