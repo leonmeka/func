@@ -1,19 +1,25 @@
+import "@/core/styles/theme.css";
+
 import { PropsWithChildren, useRef } from "react";
 
-import { usePan } from "@/core/hooks/use-pan";
-import { useResize } from "@/core/hooks/use-resize";
 import { useZoom } from "@/core/hooks/use-zoom";
+import { useResize } from "@/core/hooks/use-resize";
+import { usePan } from "@/core/hooks/use-pan";
 
-import { Range } from "@/core/models";
+import { Range, Theme as ThemeType } from "@/core/models";
 
 import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.context";
 
+import { Theme } from "@/core/components/theme";
+
 interface CoordinateSystemProps {
+  theme?: ThemeType;
   rangeX?: Range;
   rangeY?: Range;
 }
 
 export const CoordinateSystem = ({
+  theme = "system",
   rangeX = [-10, 10],
   rangeY = [-10, 10],
   children,
@@ -37,10 +43,7 @@ export const CoordinateSystem = ({
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
 
-  const scale = Math.max(
-    width / (maxX - minX),
-    height / (maxY - minY)
-  ) * zoom;
+  const scale = Math.max(width / (maxX - minX), height / (maxY - minY)) * zoom;
 
   return (
     <CoordinateSystemContext.Provider
@@ -54,23 +57,25 @@ export const CoordinateSystem = ({
         zoom,
       }}
     >
-      <svg
-        ref={ref}
-        className="h-full w-full select-none bg-background"
-        viewBox={`
+      <Theme theme={theme}>
+        <svg
+          ref={ref}
+          className="h-full w-full select-none bg-background"
+          viewBox={`
             ${offsetX} 
             ${offsetY}
             ${width}
             ${height}
           `}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerLeave={handlePointerUp}
-        onWheel={handleWheel}
-      >
-        {children}
-      </svg>
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
+          onWheel={handleWheel}
+        >
+          {children}
+        </svg>
+      </Theme>
     </CoordinateSystemContext.Provider>
   );
 };
