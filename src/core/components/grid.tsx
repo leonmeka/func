@@ -56,7 +56,7 @@ export const Grid = () => {
           y1={origin.y - 8 * zoom}
           x2={x}
           y2={origin.y + 8 * zoom}
-          strokeWidth={5 * zoom}
+          strokeWidth={3 * zoom}
         />
       );
 
@@ -99,7 +99,7 @@ export const Grid = () => {
           y1={y}
           x2={origin.x + 8 * zoom}
           y2={y}
-          strokeWidth={5 * zoom}
+          strokeWidth={3 * zoom}
         />
       );
 
@@ -139,7 +139,7 @@ export const Grid = () => {
         y1={origin.y}
         x2={offsetX + svgWidth}
         y2={origin.y}
-        strokeWidth={5 * zoom}
+        strokeWidth={3 * zoom}
       />
       <line
         className="stroke-muted"
@@ -147,7 +147,7 @@ export const Grid = () => {
         y1={offsetY}
         x2={origin.x}
         y2={offsetY + svgHeight}
-        strokeWidth={5 * zoom}
+        strokeWidth={3 * zoom}
       />
     </g>
   );
