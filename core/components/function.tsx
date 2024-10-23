@@ -20,7 +20,7 @@ export const Function = ({ y: f }: FunctionProps) => {
   const extendedMinX = minX + normalizedOffset - 1;
   const extendedMaxX = maxX + normalizedOffset + 1;
 
-  const resolution = 0.1;
+  const resolution = 0.01;
 
   // Generate path
   const pathCommands = Array.from(

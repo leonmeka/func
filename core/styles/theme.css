@@ -4,30 +4,30 @@
 
 @layer base {
   .light {
-    --background: #ffffff;
-    --foreground: #0f172a;
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
 
-    --primary: #0f172a;
-    --primary-foreground: #f8fafc;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: #f1f5f9;
-    --secondary-foreground: #0f172a;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
   }
 
   .dark {
-    --background: #030711;
-    --foreground: #e1e7ef;
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
 
-    --primary: #f8fafc;
-    --primary-foreground: #020205;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
 
-    --secondary: #0f172a;
-    --secondary-foreground: #f8fafc;
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: #0f1629;
-    --muted-foreground: #7f8ea3;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
   }
 }

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import { Point as PointType } from "@core/types";
 
 import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
