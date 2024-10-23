@@ -16,12 +16,14 @@ export const Debug = () => {
 
   return (
     <div className="grid absolute bottom-0 left-0 p-4 text-muted-foreground text-xs gap-1">
+      <span className="font-bold">Debug</span>
+
       <span>
         Origin: {origin.x}, {origin.y}
       </span>
       <span>Scale: {scale}</span>
       <span>
-        Offset: {offsetX}, {offsetY}
+        Offset: {offsetX.toFixed(2)}, {offsetY.toFixed(2)}
       </span>
       <span>Zoom: {zoom}</span>
       <span>Width: {width}</span>
