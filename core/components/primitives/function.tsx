@@ -34,6 +34,10 @@ export const Function = ({ y: f }: FunctionProps) => {
       const X = origin.x + x * scale;
       const Y = origin.y - y * scale;
 
+      if (Number.isNaN(X) || Number.isNaN(Y)) {
+        return null;
+      }
+
       return `${X} ${Y}`;
     }
   ).filter(Boolean);

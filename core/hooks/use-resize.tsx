@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useResize = (ref: React.RefObject<SVGElement>) => {
+export const useResize = (ref: React.RefObject<HTMLDivElement>) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {

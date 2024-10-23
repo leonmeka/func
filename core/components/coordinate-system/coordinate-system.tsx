@@ -10,7 +10,8 @@ import { Range, Theme as ThemeType } from "@core/types";
 
 import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
 
-import { Theme } from "@core/components/theme";
+import { Theme } from "@core/components/theme/theme";
+import { useMouse } from "@core/hooks/use-mouse";
 
 interface CoordinateSystemProps {
   theme?: ThemeType;
@@ -24,8 +25,9 @@ export const CoordinateSystem = ({
   rangeY = [-10, 10],
   children,
 }: PropsWithChildren<CoordinateSystemProps>) => {
-  const ref = useRef<SVGSVGElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
+  const { mousePosition, handleMouseMove } = useMouse();
   const { zoom, handleWheel } = useZoom();
   const {
     dimensions: { width, height },
@@ -43,12 +45,15 @@ export const CoordinateSystem = ({
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
 
-  const scale = Math.max(width / (maxX - minX), height / (maxY - minY)) * zoom;
+  const scale =
+    Math.max(width / (maxX - minX), mousePosition.y / (maxY - minY)) * zoom;
 
   return (
     <CoordinateSystemContext.Provider
       value={{
         origin,
+        width,
+        height,
         rangeX,
         rangeY,
         scale,
@@ -58,23 +63,18 @@ export const CoordinateSystem = ({
       }}
     >
       <Theme theme={theme}>
-        <svg
+        <div
           ref={ref}
-          className="h-full w-full select-none bg-background"
-          viewBox={`
-            ${offsetX} 
-            ${offsetY}
-            ${width}
-            ${height}
-          `}
+          className="h-full w-full select-none bg-background overflow-hidden"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerLeave={handlePointerUp}
+          onMouseMove={handleMouseMove}
           onWheel={handleWheel}
         >
           {children}
-        </svg>
+        </div>
       </Theme>
     </CoordinateSystemContext.Provider>
   );

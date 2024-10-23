@@ -1,11 +1,13 @@
 import { createContext } from "react";
 
-import { Point } from "@core/types";
+import { Point, Range } from "@core/types";
 
 interface CoordinateSystemContextProps {
   origin: Point;
-  rangeX: [number, number];
-  rangeY: [number, number];
+  width: number;
+  height: number;
+  rangeX: Range;
+  rangeY: Range;
   scale: number;
   offsetX: number;
   offsetY: number;
@@ -14,6 +16,8 @@ interface CoordinateSystemContextProps {
 
 const initialContext: CoordinateSystemContextProps = {
   origin: { x: 0, y: 0 },
+  width: 0,
+  height: 0,
   rangeX: [-10, 10],
   rangeY: [-10, 10],
   scale: 0,
