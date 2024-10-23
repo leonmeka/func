@@ -1,6 +1,7 @@
 import { CoordinateSystem } from "@core/components/coordinate-system";
 import { Grid } from "@core/components/grid";
 import { Function } from "@core/components/function";
+import { Point } from "@core/components/point";
 
 export const App = () => {
   return (
@@ -8,8 +9,10 @@ export const App = () => {
       <CoordinateSystem>
         <Grid />
 
-        <Function y={(x) => 0.5 * x * Math.cos(x)} />
-        <Function y={(x) => 0.5 * x} />
+        <Point point={{ x: 4, y: 4 }} />
+
+        <Function y={(x) => x} />
+        <Function y={(x) => 2 ** (x - 2)} />
       </CoordinateSystem>
     </div>
   );
