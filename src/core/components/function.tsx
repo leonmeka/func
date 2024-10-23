@@ -6,7 +6,7 @@ interface FunctionProps {
   y: (x: number) => number;
 }
 
-export const Function = ({ y: func }: FunctionProps) => {
+export const Function = ({ y: f }: FunctionProps) => {
   const { origin, rangeX, scale, offsetX, zoom } = useContext(
     CoordinateSystemContext
   );
@@ -29,7 +29,7 @@ export const Function = ({ y: func }: FunctionProps) => {
     },
     (_, i) => {
       const x = extendedMinX + i * resolution;
-      const y = func(x);
+      const y = f(x);
 
       const X = origin.x + x * scale;
       const Y = origin.y - y * scale;
