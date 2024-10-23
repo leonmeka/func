@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { CoordinateSystemContext } from "@/core/components/coordinate-system/coordinate-system.context";
+
+import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.context";
 
 interface FunctionProps {
   y: (x: number) => number;

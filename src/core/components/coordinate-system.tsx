@@ -1,8 +1,8 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useRef } from "react";
 
 import { usePan } from "@/core/hooks/use-pan";
 
-import { CoordinateSystemContext } from "@/core/components/coordinate-system/coordinate-system.context";
+import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.context";
 import { useResize } from "@/core/hooks/use-resize";
 import { Range } from "@/core/models";
 import { useZoom } from "@/core/hooks/use-zoom";
@@ -17,10 +17,12 @@ export const CoordinateSystem = ({
   rangeY = [-10, 10],
   children,
 }: PropsWithChildren<CoordinateSystemProps>) => {
+  const ref = useRef<SVGSVGElement>(null);
+
   const { zoom, handleWheel } = useZoom();
   const {
     dimensions: { width, height },
-  } = useResize();
+  } = useResize(ref);
   const {
     offsetX,
     offsetY,
@@ -28,6 +30,7 @@ export const CoordinateSystem = ({
     handlePointerMove,
     handlePointerUp,
   } = usePan();
+
   const origin = { x: width / 2, y: height / 2 };
 
   const [minX, maxX] = rangeX;
@@ -49,26 +52,23 @@ export const CoordinateSystem = ({
         zoom,
       }}
     >
-      <main
+      <svg
+        ref={ref}
         className="h-full w-full select-none"
+        viewBox={`
+            ${offsetX} 
+            ${offsetY}
+            ${width}
+            ${height}
+          `}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
         onWheel={handleWheel}
       >
-        <svg
-          className="w-full h-full"
-          viewBox={`
-            ${offsetX} 
-            ${offsetY}
-            ${width}
-            ${height}
-          `}
-        >
-          {children}
-        </svg>
-      </main>
+        {children}
+      </svg>
     </CoordinateSystemContext.Provider>
   );
 };
