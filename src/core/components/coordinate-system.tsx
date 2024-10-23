@@ -36,8 +36,10 @@ export const CoordinateSystem = ({
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
 
-  const scaleX = (width / (maxX - minX)) * zoom;
-  const scaleY = (height / (maxY - minY)) * zoom;
+  const scale = Math.max(
+    width / (maxX - minX),
+    height / (maxY - minY)
+  ) * zoom;
 
   return (
     <CoordinateSystemContext.Provider
@@ -45,8 +47,7 @@ export const CoordinateSystem = ({
         origin,
         rangeX,
         rangeY,
-        scaleX,
-        scaleY,
+        scale,
         offsetX,
         offsetY,
         zoom,

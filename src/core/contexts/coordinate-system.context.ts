@@ -6,8 +6,7 @@ interface CoordinateSystemContextProps {
   origin: models.Point;
   rangeX: [number, number];
   rangeY: [number, number];
-  scaleX: number;
-  scaleY: number;
+  scale: number;
   offsetX: number;
   offsetY: number;
   zoom: number;
@@ -17,8 +16,7 @@ const initialContext: CoordinateSystemContextProps = {
   origin: { x: 0, y: 0 },
   rangeX: [-10, 10],
   rangeY: [-10, 10],
-  scaleX: 0,
-  scaleY: 0,
+  scale: 0,
   offsetX: 0,
   offsetY: 0,
   zoom: 1,
