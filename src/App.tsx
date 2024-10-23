@@ -8,9 +8,8 @@ export const App = () => {
       <CoordinateSystem>
         <Grid />
 
-        <Function y={(x) => Math.cos(x)} />
-        <Function y={(x) => Math.sin(x)} />
-        <Function y={(x) => 0.5 * x + 1} />
+        <Function y={(x) => 0.5 * x * Math.cos(x)} />
+        <Function y={(x) => 0.5 * x} />
       </CoordinateSystem>
     </div>
   );
