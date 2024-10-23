@@ -1,9 +1,9 @@
 import { createContext } from "react";
 
-import * as models from "@/core/models";
+import { Point } from "@/core/models";
 
 interface CoordinateSystemContextProps {
-  origin: models.Point;
+  origin: Point;
   rangeX: [number, number];
   rangeY: [number, number];
   scale: number;

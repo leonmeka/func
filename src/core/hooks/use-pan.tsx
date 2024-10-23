@@ -1,4 +1,3 @@
-// usePan.ts
 import { useState } from "react";
 
 export const usePan = () => {

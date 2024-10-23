@@ -1,11 +1,12 @@
 import { PropsWithChildren, useRef } from "react";
 
 import { usePan } from "@/core/hooks/use-pan";
+import { useResize } from "@/core/hooks/use-resize";
+import { useZoom } from "@/core/hooks/use-zoom";
+
+import { Range } from "@/core/models";
 
 import { CoordinateSystemContext } from "@/core/contexts/coordinate-system.context";
-import { useResize } from "@/core/hooks/use-resize";
-import { Range } from "@/core/models";
-import { useZoom } from "@/core/hooks/use-zoom";
 
 interface CoordinateSystemProps {
   rangeX?: Range;
