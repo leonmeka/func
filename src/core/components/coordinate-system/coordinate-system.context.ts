@@ -10,6 +10,7 @@ interface CoordinateSystemContextProps {
   scaleY: number;
   offsetX: number;
   offsetY: number;
+  zoom: number;
 }
 
 const initialContext: CoordinateSystemContextProps = {
@@ -20,6 +21,7 @@ const initialContext: CoordinateSystemContextProps = {
   scaleY: 0,
   offsetX: 0,
   offsetY: 0,
+  zoom: 1,
 };
 
 const CoordinateSystemContext =

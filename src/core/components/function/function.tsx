@@ -1,5 +1,4 @@
-import { useContext } from "react";
-
+import { useContext, useEffect, useState } from "react";
 import { CoordinateSystemContext } from "@/core/components/coordinate-system/coordinate-system.context";
 
 interface FunctionProps {
@@ -8,37 +7,71 @@ interface FunctionProps {
   color?: string;
 }
 
-export const Function = ({ y, resolution = 0.1, color = "black" }: FunctionProps) => {
-  const {
-    rangeX,
-    rangeY,
-    scaleX,
-    scaleY,
-    origin
-  } = useContext(CoordinateSystemContext);
+export const Function = ({
+  y,
+  resolution = 0.1,
+  color = "black",
+}: FunctionProps) => {
+  const { origin, rangeX, rangeY, scaleX, scaleY, offsetX, zoom } = useContext(
+    CoordinateSystemContext
+  );
+
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
+  const [pathData, setPathData] = useState<string>("");
 
-  const pathCommands = Array.from({ length: Math.ceil((maxX - minX) / resolution) + 1 }, (_, i) => {
-    const x = minX + i * resolution;
-    const yValue = y(x);
+  useEffect(() => {
+    const normalizedOffset = offsetX / scaleX;
 
-    if (yValue < minY || yValue > maxY) return null;
+    const extendedVisibleMinX = minX + normalizedOffset;
+    const extendedVisibleMaxX = maxX + normalizedOffset;
 
-    const svgX = origin.x + x * scaleX;
-    const svgY = origin.y - yValue * scaleY;
+    const pathCommands = Array.from(
+      {
+        length:
+          Math.ceil((extendedVisibleMaxX - extendedVisibleMinX) / resolution) +
+          1,
+      },
+      (_, i) => {
+        const x = extendedVisibleMinX + i * resolution;
+        const yValue = y(x);
 
-    return `${svgX} ${svgY}`;
-  }).filter(Boolean);
+        const svgX = origin.x + x * scaleX;
+        const svgY = origin.y - yValue * scaleY;
 
-  if (pathCommands.length === 0) return "";
+        return `${svgX} ${svgY}`;
+      }
+    ).filter(Boolean);
+
+    if (pathCommands.length > 0) {
+      const newPath =
+        `M ${pathCommands[0]} ` +
+        pathCommands
+          .slice(1)
+          .map((cmd) => `L ${cmd}`)
+          .join(" ");
+      setPathData(newPath);
+    } else {
+      setPathData("");
+    }
+  }, [
+    offsetX,
+    scaleX,
+    minX,
+    maxX,
+    minY,
+    maxY,
+    origin.x,
+    origin.y,
+    resolution,
+    y,
+    zoom,
+    scaleY,
+  ]);
+
+  if (!pathData) return null;
 
   return (
-    <path
-      d={`M ${pathCommands[0]} ` + pathCommands.slice(1).map(cmd => `L ${cmd}`).join(" ")}
-      stroke={color}
-      fill="none"
-      strokeWidth={2}
-    />
+    <path d={pathData} stroke={color} fill="none" strokeWidth={2 * zoom} />
   );
 };

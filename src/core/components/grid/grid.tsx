@@ -6,9 +6,8 @@ interface GridProps {
 }
 
 export const Grid = ({ steps = 1 }: GridProps) => {
-  const { origin, scaleX, scaleY, rangeX, rangeY, offsetX, offsetY } = useContext(
-    CoordinateSystemContext
-  );
+  const { origin, scaleX, scaleY, rangeX, rangeY, offsetX, offsetY, zoom } =
+    useContext(CoordinateSystemContext);
 
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
@@ -23,6 +22,7 @@ export const Grid = ({ steps = 1 }: GridProps) => {
   const svgWidth = (maxX - minX) * scaleX;
   const svgHeight = (maxY - minY) * scaleY;
 
+  // Generate grid lines, ticks and labels
   const gridLinesX = [];
   const gridLinesY = [];
   const ticksX = [];
@@ -40,6 +40,7 @@ export const Grid = ({ steps = 1 }: GridProps) => {
         x2={svgX}
         y2={offsetY + svgHeight}
         stroke="lightgray"
+        strokeWidth={1 * zoom}
       />
     );
 
@@ -48,20 +49,20 @@ export const Grid = ({ steps = 1 }: GridProps) => {
         <line
           key={`x-tick-${x}`}
           x1={svgX}
-          y1={origin.y - 5}
+          y1={origin.y - 5 * zoom}
           x2={svgX}
-          y2={origin.y + 5}
+          y2={origin.y + 5 * zoom}
           stroke="lightgray"
-          strokeWidth={2}
+          strokeWidth={2 * zoom}
         />
       );
 
       labelsX.push(
         <text
           key={`x-label-${x}`}
-          x={svgX}
-          y={origin.y + 20}
-          fontSize="14"
+          x={svgX - 1 * zoom}
+          y={origin.y + 20 * zoom}
+          fontSize={12 * zoom}
           textAnchor="middle"
           fill="gray"
         >
@@ -81,6 +82,7 @@ export const Grid = ({ steps = 1 }: GridProps) => {
         x2={offsetX + svgWidth}
         y2={svgY}
         stroke="lightgray"
+        strokeWidth={1 * zoom}
       />
     );
 
@@ -88,21 +90,21 @@ export const Grid = ({ steps = 1 }: GridProps) => {
       ticksY.push(
         <line
           key={`y-tick-${y}`}
-          x1={origin.x - 5}
+          x1={origin.x - 5 * zoom}
           y1={svgY}
-          x2={origin.x + 5}
+          x2={origin.x + 5 * zoom}
           y2={svgY}
           stroke="lightgray"
-          strokeWidth={2}
+          strokeWidth={2 * zoom}
         />
       );
 
       labelsY.push(
         <text
           key={`y-label-${y}`}
-          x={origin.x - 20}
-          y={svgY + 4}
-          fontSize="14"
+          x={origin.x - 20 * zoom}
+          y={svgY + 5 * zoom}
+          fontSize={12 * zoom}
           textAnchor="end"
           fill="gray"
         >
@@ -114,10 +116,15 @@ export const Grid = ({ steps = 1 }: GridProps) => {
 
   return (
     <g>
+      {/* Grid lines */}
       {gridLinesX}
       {gridLinesY}
+
+      {/* Ticks */}
       {ticksX}
       {ticksY}
+
+      {/* Labels */}
       {labelsX}
       {labelsY}
 
@@ -128,7 +135,7 @@ export const Grid = ({ steps = 1 }: GridProps) => {
         x2={origin.x}
         y2={offsetY + svgHeight}
         stroke="lightgray"
-        strokeWidth={2.5}
+        strokeWidth={2 * zoom}
       />
       <line
         x1={offsetX}
@@ -136,7 +143,7 @@ export const Grid = ({ steps = 1 }: GridProps) => {
         x2={offsetX + svgWidth}
         y2={origin.y}
         stroke="lightgray"
-        strokeWidth={2.5}
+        strokeWidth={2 * zoom}
       />
     </g>
   );

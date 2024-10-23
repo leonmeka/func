@@ -2,18 +2,22 @@ import { PropsWithChildren } from "react";
 
 import { usePan } from "@/core/hooks/use-pan";
 
-import {
-  CoordinateSystemContext,
-} from "@/core/components/coordinate-system/coordinate-system.context";
+import { CoordinateSystemContext } from "@/core/components/coordinate-system/coordinate-system.context";
 import { useResize } from "@/core/hooks/use-resize";
 import { Range } from "@/core/models";
+import { useZoom } from "@/core/hooks/use-zoom";
 
 interface CoordinateSystemProps {
   rangeX?: Range;
   rangeY?: Range;
 }
 
-export const CoordinateSystem = ({ rangeX = [-10, 10], rangeY = [-10, 10], children }: PropsWithChildren<CoordinateSystemProps>) => {
+export const CoordinateSystem = ({
+  rangeX = [-10, 10],
+  rangeY = [-10, 10],
+  children,
+}: PropsWithChildren<CoordinateSystemProps>) => {
+  const { zoom, handleWheel } = useZoom();
   const {
     dimensions: { width, height },
   } = useResize();
@@ -29,8 +33,8 @@ export const CoordinateSystem = ({ rangeX = [-10, 10], rangeY = [-10, 10], child
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
 
-  const scaleX = width / (maxX - minX);
-  const scaleY = height / (maxY - minY);
+  const scaleX = (width / (maxX - minX)) * zoom;
+  const scaleY = (height / (maxY - minY)) * zoom;
 
   return (
     <CoordinateSystemContext.Provider
@@ -42,6 +46,7 @@ export const CoordinateSystem = ({ rangeX = [-10, 10], rangeY = [-10, 10], child
         scaleY,
         offsetX,
         offsetY,
+        zoom,
       }}
     >
       <main
@@ -50,13 +55,14 @@ export const CoordinateSystem = ({ rangeX = [-10, 10], rangeY = [-10, 10], child
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
+        onWheel={handleWheel}
       >
         <svg
           className="w-full h-full"
           viewBox={`
             ${offsetX} 
             ${offsetY}
-            ${width} 
+            ${width}
             ${height}
           `}
         >
