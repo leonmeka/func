@@ -11,7 +11,7 @@ Func is a light-weight, function-based animation library for React.
 Func is built around the concept of functions. A function is a mathematical relation that maps a set of inputs to a set of outputs. In the context of Func, a function takes a single argument `x: number` and returns a single value `y: number`: `f: (x: number) => number`.
 
 > [!NOTE]
-> Note, that a function can be anything from a simple linear to a complex trigonometric function.
+> Note that a function can be anything from a simple linear or quadratic function to more complex functions (e.g., trigonometric functions, exponential functions, etc.).
 
 ### Animations
 
