@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 import { Point, Range } from "@core/types";
 
-interface FuncContextProps {
+export interface FuncContextProps {
   origin: Point;
   width: number;
   height: number;

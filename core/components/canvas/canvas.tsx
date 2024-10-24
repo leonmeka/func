@@ -1,8 +1,16 @@
 import { PropsWithChildren, useContext } from "react";
 
 import { FuncContext } from "@core/contexts/func.context";
+import { Grid } from "@core/components/grid/grid";
 
-export const Canvas = ({ children }: PropsWithChildren) => {
+interface CanvasProps {
+  grid?: boolean;
+}
+
+export const Canvas = ({
+  grid = true,
+  children,
+}: PropsWithChildren<CanvasProps>) => {
   const { width, height, offsetX, offsetY } = useContext(FuncContext);
 
   return (
@@ -14,6 +22,7 @@ export const Canvas = ({ children }: PropsWithChildren) => {
       ${height}
     `}
     >
+      {grid && <Grid />}
       {children}
     </svg>
   );

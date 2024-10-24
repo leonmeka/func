@@ -12,15 +12,18 @@ import { FuncContext } from "@core/contexts/func.context";
 
 import { Theme } from "@core/components/theme/theme";
 import { useMouse } from "@core/hooks/use-mouse";
+import { Debug } from "../debug/debug";
 
 interface CoordinateSystemProps {
   theme?: ThemeType;
+  debug?: boolean;
   rangeX?: Range;
   rangeY?: Range;
 }
 
 export const Func = ({
   theme = "system",
+  debug = false,
   rangeX = [-10, 10],
   rangeY = [-10, 10],
   children,
@@ -74,6 +77,7 @@ export const Func = ({
           }}
         >
           {children}
+          {debug && <Debug />}
         </FuncContext.Provider>
       </div>
     </Theme>

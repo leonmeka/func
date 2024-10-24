@@ -18,12 +18,5 @@ export const Point = ({ point: { x, y } }: PointProps) => {
     return null;
   }
 
-  return (
-    <circle
-      cx={X}
-      cy={Y}
-      r={5 * zoom}
-      className="fill-primary cursor-pointer"
-    />
-  );
+  return <circle cx={X} cy={Y} r={5 * zoom} className="fill-primary" />;
 };

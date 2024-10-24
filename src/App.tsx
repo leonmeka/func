@@ -2,11 +2,9 @@ import { useAnimation } from "@core/hooks/use-animation";
 
 import { Func } from "@core/components/func/func";
 import { Canvas } from "@core/components/canvas/canvas";
-import { Grid } from "@core/components/grid/grid";
 import { Function } from "@core/components/primitives/function";
 import { Controls } from "@core/components/controls/controls";
 import { AnimationControls } from "@core/components/controls/animation-controls/animation-controls";
-import { Debug } from "@core/components/debug/debug";
 import { Point } from "@core/components/primitives/point";
 
 export const App = () => {
@@ -25,10 +23,8 @@ export const App = () => {
 
   return (
     <div className="dark w-dvw h-dvh">
-      <Func>
+      <Func debug>
         <Canvas>
-          <Grid />
-
           {/* Visualize the functions */}
           <Function y={f} color="muted" />
           <Function y={g} />
@@ -40,8 +36,6 @@ export const App = () => {
         <Controls>
           <AnimationControls animation={animation} />
         </Controls>
-
-        <Debug />
       </Func>
     </div>
   );

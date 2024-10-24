@@ -78,7 +78,6 @@ import { Canvas } from "@func/components/primitives/canvas";
 import { Function } from "@func/components/primitives/function";
 import { Point } from "@func/components/primitives/point";
 
-import { Grid } from "@func/components/primitives/grid"; // (optional)
 import { Controls } from "@func/components/controls/controls"; // (optional)
 import { AnimationControls } from "@func/components/controls/animation-controls"; // (optional)
 
@@ -103,8 +102,6 @@ export const App = () => {
     <div className="w-dvw h-dvh">
       <Func>
         <Canvas>
-          <Grid />
-
           {/* Visualize the base function */}
           <Function y={f} color="muted" />
 
@@ -115,8 +112,6 @@ export const App = () => {
         <Controls>
           <AnimationControls animation={animation} />
         </Controls>
-
-        <Debug />
       </Func>
     </div>
   );
@@ -148,8 +143,6 @@ export const App = () => {
     <div className="w-dvw h-dvh">
       <Func>
         <Canvas>
-          <Grid />
-
           {/* Visualize the functions */}
           <Function y={f} color="muted" />
           <Function y={g} />
@@ -161,8 +154,6 @@ export const App = () => {
         <Controls>
           <AnimationControls animation={animation} />
         </Controls>
-
-        <Debug />
       </Func>
     </div>
   );

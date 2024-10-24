@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Range } from "@core/types";
 
@@ -22,37 +22,35 @@ export const useAnimation = ({
   const [x, setX] = useState(range[0]);
   const [y, setY] = useState(func(x));
 
-  const animate = useCallback(
-    (timestamp: number) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp;
+  const animate = (timestamp: number) => {
+    if (!startTimeRef.current) startTimeRef.current = timestamp;
 
-      const [beginning, end] = range;
-      const elapsed = timestamp - startTimeRef.current;
-      const progress = elapsed / duration;
+    const [beginning, end] = range;
+    const elapsed = timestamp - startTimeRef.current;
+    const progress = elapsed / duration;
 
-      if (progress >= 1) {
-        if (!loop) {
-          setX(range[0]);
-          setY(func(range[0]));
-          stop();
-          return;
-        }
+    if (progress >= 1) {
+      if (!loop) {
+        setX(range[0]);
+        setY(func(range[0]));
+        stop();
 
-        startTimeRef.current = timestamp;
+        return;
       }
 
-      const x = beginning + (end - beginning) * progress;
-      const y = func(x);
+      startTimeRef.current = timestamp;
+    }
 
-      setX(x);
-      setY(y);
+    const x = beginning + (end - beginning) * progress;
+    const y = func(x);
 
-      animationRef.current = requestAnimationFrame(animate);
-    },
-    [func, duration, range, loop]
-  );
+    setX(x);
+    setY(y);
 
-  const start = useCallback(() => {
+    animationRef.current = requestAnimationFrame(animate);
+  };
+
+  const start = () => {
     if (animationRef.current) {
       const elapsed = performance.now() - startTimeRef.current!;
       startTimeRef.current = performance.now() - elapsed;
@@ -61,7 +59,7 @@ export const useAnimation = ({
 
     animationRef.current = requestAnimationFrame(animate);
     setIsPlaying(true);
-  }, [animate]);
+  };
 
   const stop = () => {
     if (!animationRef.current) return;
@@ -71,11 +69,14 @@ export const useAnimation = ({
     startTimeRef.current = null;
 
     setIsPlaying(false);
+    setX(range[0]);
+    setY(func(range[0]));
   };
 
   useEffect(() => {
     start();
-  }, [start]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { start, stop, isPlaying, x, y };
 };
