@@ -13,7 +13,7 @@ Func is built around the concept of functions. A function is a mathematical rela
 
 ### Animations
 
-An animation essentially is a function of input over time. It is defined by a function `f: (x: number) => number` and a duration `duration: number`, where `duration` is the total time it takes for the animation to complete. The animation function `f` is then evaluated at each time step `t` in a given range `[x_min, x_max]` to produce a value `y: number`.
+An animation essentially is a function of input over time. It is defined by a function `f: (x: number) => number` and a duration `duration: number`, where `duration` is the total time it takes for the animation to complete. The animation function `f` is then evaluated at each time step `t` in a given range `[n, m]` to produce a value `y: number`.
 
 ### Components
 
@@ -21,16 +21,15 @@ Func provides a set of React components that can be used to create animations an
 
 - `Func`: The main component that wraps the entire application.
 - `Canvas`: A container for drawing primitives like lines, points, and functions.
-- `Grid`: A visual representation of a cartesian coordinate system (optional).
 - `Controls`: A container for controls (optional).
   - `AnimationControls`: Controls for starting, stopping an animation (optional).
 
-Apart from the core components, Func also provides a set of primitive components that can be used to create visualizations:
+Apart from the core components, Func also provides a set of primitives that can be used to create visualizations:
 
-- `Point`: A visual representation of a point.
-- `Line`: A visual representation of a line.
-- `Area`: A visual representation of an area.
-- `Function`: A visual representation of a function.
+- `Point`: A visual representation of a point,
+- `Line`: A visual representation of a line,
+- `Area`: A visual representation of an area,
+- `Function`: A visual representation of a function (e.g., a line, curve, etc.).
 
 ## Getting Started
 
@@ -100,10 +99,10 @@ export const App = () => {
     <div className="w-dvw h-dvh">
       <Func>
         <Canvas>
-          {/* Visualize the base function */}
+          {/* Visualize the animation function */}
           <Function y={f} color="muted" />
 
-          {/* Visualize the animated point */}
+          {/* Visualize an animated point */}
           <Point point={{ x: animation.x, y: animation.y }} />
         </Canvas>
 
@@ -145,7 +144,7 @@ export const App = () => {
           <Function y={f} color="muted" />
           <Function y={g} />
 
-          {/* Visualize the animation's progress */}
+          {/* Visualize an animated point */}
           <Point point={{ x: animation.x, y: animation.y }} />
         </Canvas>
 
@@ -179,7 +178,7 @@ import { Operations } from "@func/utils/operations";
 const f = (x: number) => Math.sin(x);
 const g = (x: number) => Math.cos(x);
 
-// Compose the functions
+// Apply the compose operation
 const h = Operations.COMPOSE(f, g);
 
 // ...
@@ -204,7 +203,7 @@ import { Transformations } from "@func/utils/transformations";
 // Define the base function
 const f = (x: number) => Math.sin(x);
 
-// Translate the function
+// Apply the translate transformation
 const g = Transformations.TRANSLATE(f, 2, 0);
 
 // ...

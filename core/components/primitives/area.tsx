@@ -18,6 +18,15 @@ export const Area = ({ points }: PolygonProps) => {
           const X = origin.x + x * scale;
           const Y = origin.y - y * scale;
 
+          if (
+            Number.isNaN(X) ||
+            Number.isNaN(Y) ||
+            !isFinite(X) ||
+            !isFinite(Y)
+          ) {
+            return null;
+          }
+
           return `${X} ${Y}`;
         })
         .join(" L ")} Z`}
