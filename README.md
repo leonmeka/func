@@ -170,8 +170,6 @@ Func provides a set of operation functions that can be used to combine multiple 
 - `Operation.MULTIPLY`: Multiplies two functions.
 - `Operation.DIVIDE`: Divides two functions.
 
-To use these operation functions, you can pass them as the `y` prop to the `Function` component:
-
 ```typescript
 // ...
 
@@ -197,8 +195,6 @@ Since we're working with functions, we can also apply transformations to them. T
 - `Transformation.SCALE`: Scales a function.
 - `Transformation.ROTATE`: Rotates a function.
 - `Transformation.SHEAR`: Shears a function.
-
-To use these transformation functions, you can pass them as the `y` prop to the `Function` component:
 
 ```typescript
 // ...
