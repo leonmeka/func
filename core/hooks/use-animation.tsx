@@ -1,73 +1,81 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Range } from "@core/types";
 
 export interface UseAnimationProps {
-    y: (x: number) => number;
-    duration: number;
-    range: Range;
-    loop?: boolean;
+  y: (x: number) => number;
+  duration: number;
+  range: Range;
+  loop?: boolean;
 }
 
-export const useAnimation = ({ y: func, duration, range, loop = true, }: UseAnimationProps) => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const animationRef = useRef<number | null>(null);
-    const startTimeRef = useRef<number | null>(null);
+export const useAnimation = ({
+  y: func,
+  duration,
+  range,
+  loop = true,
+}: UseAnimationProps) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const animationRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
 
-    const [x, setX] = useState(range[0]);
-    const [y, setY] = useState(func(x));
+  const [x, setX] = useState(range[0]);
+  const [y, setY] = useState(func(x));
 
-    const animate = (timestamp: number) => {
-        if (!startTimeRef.current) startTimeRef.current = timestamp;
+  const animate = useCallback(
+    (timestamp: number) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
 
-        const [beginning, end] = range;
-        const elapsed = timestamp - startTimeRef.current;
-        const progress = elapsed / duration;
+      const [beginning, end] = range;
+      const elapsed = timestamp - startTimeRef.current;
+      const progress = elapsed / duration;
 
-        if (progress >= 1) {
-            if (!loop) {
-                setX(range[0]);
-                setY(func(range[0]));
-                stop();
-                return;
-            }
-
-            startTimeRef.current = timestamp;
+      if (progress >= 1) {
+        if (!loop) {
+          setX(range[0]);
+          setY(func(range[0]));
+          stop();
+          return;
         }
 
-        const x = beginning + (end - beginning) * progress;
-        const y = func(x);
+        startTimeRef.current = timestamp;
+      }
 
-        setX(x);
-        setY(y);
+      const x = beginning + (end - beginning) * progress;
+      const y = func(x);
 
-        animationRef.current = requestAnimationFrame(animate);
-    };
+      setX(x);
+      setY(y);
 
-    const start = () => {
-        if (animationRef.current) {
-            const elapsed = performance.now() - startTimeRef.current!;
-            startTimeRef.current = performance.now() - elapsed;
-            return;
-        }
+      animationRef.current = requestAnimationFrame(animate);
+    },
+    [func, duration, range, loop]
+  );
 
-        animationRef.current = requestAnimationFrame(animate);
-        setIsPlaying(true);
-    };
+  const start = useCallback(() => {
+    if (animationRef.current) {
+      const elapsed = performance.now() - startTimeRef.current!;
+      startTimeRef.current = performance.now() - elapsed;
+      return;
+    }
 
-    const stop = () => {
-        if (!animationRef.current) return;
+    animationRef.current = requestAnimationFrame(animate);
+    setIsPlaying(true);
+  }, [animate]);
 
-        cancelAnimationFrame(animationRef.current);
-        animationRef.current = null;
-        startTimeRef.current = null;
+  const stop = () => {
+    if (!animationRef.current) return;
 
-        setIsPlaying(false);
-    };
+    cancelAnimationFrame(animationRef.current);
+    animationRef.current = null;
+    startTimeRef.current = null;
 
-    useEffect(() => {
-        start();
-    }, []);
+    setIsPlaying(false);
+  };
 
-    return { start, stop, isPlaying, x, y };
+  useEffect(() => {
+    start();
+  }, [start]);
+
+  return { start, stop, isPlaying, x, y };
 };

@@ -33,7 +33,7 @@ export const Function = ({ y: f, color = "primary" }: FunctionProps) => {
       const X = origin.x + x * scale;
       const Y = origin.y - y * scale;
 
-      if (Number.isNaN(X) || Number.isNaN(Y)) {
+      if (Number.isNaN(X) || Number.isNaN(Y) || !isFinite(X) || !isFinite(Y)) {
         return null;
       }
 

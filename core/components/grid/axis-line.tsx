@@ -15,15 +15,19 @@ export const AxisLine = ({ axis, offset, svgLength }: AxisLineProps) => {
 
   const isXAxis = axis === "x";
 
-  const position = isXAxis ? origin.y : origin.x;
+  const xy = isXAxis ? origin.y : origin.x;
+
+  if (Number.isNaN(xy) || !isFinite(xy)) {
+    return null;
+  }
 
   return (
     <line
       className="stroke-muted"
-      x1={isXAxis ? offset : position}
-      y1={isXAxis ? position : offset}
-      x2={isXAxis ? offset + svgLength : position}
-      y2={isXAxis ? position : offset + svgLength}
+      x1={isXAxis ? offset : xy}
+      y1={isXAxis ? xy : offset}
+      x2={isXAxis ? offset + svgLength : xy}
+      y2={isXAxis ? xy : offset + svgLength}
       strokeWidth={3 * zoom}
     />
   );

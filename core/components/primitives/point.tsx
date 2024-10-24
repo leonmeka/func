@@ -14,6 +14,10 @@ export const Point = ({ point: { x, y } }: PointProps) => {
   const X = origin.x + x * scale;
   const Y = origin.y - y * scale;
 
+  if (Number.isNaN(X) || Number.isNaN(Y) || !isFinite(X) || !isFinite(Y)) {
+    return null;
+  }
+
   return (
     <circle
       cx={X}

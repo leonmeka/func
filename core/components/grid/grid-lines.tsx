@@ -60,9 +60,9 @@ export const GridLines = ({
         <text
           className="fill-muted-foreground"
           key={`${axis}-label-${i}`}
-          x={isXAxis ? position : origin.x + 20}
-          y={isXAxis ? origin.y + 20 : position + 5}
-          fontSize={12}
+          x={isXAxis ? position : origin.x + 25}
+          y={isXAxis ? origin.y + 25 : position + 5}
+          fontSize={14}
           textAnchor={isXAxis ? "middle" : "end"}
         >
           {i}
@@ -72,10 +72,10 @@ export const GridLines = ({
   }
 
   return (
-    <>
+    <g>
       {gridLines}
       {ticks}
       {labels}
-    </>
+    </g>
   );
 };
