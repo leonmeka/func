@@ -1,8 +1,8 @@
 # Func
 
-Func is a set of opinionated components & hooks used to to create functional animations and interactive visualizations using React.
+Func is a light-weight, function-based animation library for React.
 
-![Thumbnai](./assets/thumbnail.png)
+![Thumbnail](./assets/thumbnail.png)
 
 ## Concepts
 

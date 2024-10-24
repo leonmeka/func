@@ -59,10 +59,6 @@ export const Func = ({
         onMouseMove={handleMouseMove}
         onWheel={handleWheel}
       >
-        <div className="absolute grid gap-2 top-0 left-0 p-4">
-          <span className="text-4xl font-bold text-muted-foreground">Func</span>
-        </div>
-
         <FuncContext.Provider
           value={{
             origin,
