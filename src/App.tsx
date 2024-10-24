@@ -1,11 +1,12 @@
+import { useAnimation } from "@core/hooks/use-animation";
+
 import { CoordinateSystem } from "@core/components/coordinate-system/coordinate-system";
+import { Plot } from "@core/components/plot/plot";
 import { Grid } from "@core/components/grid/grid";
 import { Function } from "@core/components/primitives/function";
-import { Debug } from "@core/components/debug/debug";
-import { Plot } from "@core/components/plot/plot";
-
-import { useAnimation } from "@core/hooks/use-animation";
 import { Controls } from "@core/components/controls/controls";
+import { AnimationControls } from "@core/components/controls/animation-controls/animation-controls";
+import { Debug } from "@core/components/debug/debug";
 
 export const App = () => {
   const f = (x: number) => x;
@@ -28,8 +29,11 @@ export const App = () => {
           <Function y={g} />
         </Plot>
 
+        <Controls >
+          <AnimationControls animation={animation} />
+        </Controls>
+
         <Debug />
-        <Controls animation={animation} />
       </CoordinateSystem>
     </div>
   );
