@@ -74,7 +74,7 @@ export const useAnimation = ({
   };
 
   useEffect(() => {
-    start();
+    if (loop) start();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

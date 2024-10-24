@@ -54,7 +54,7 @@ export const Func = ({
     <Theme theme={theme}>
       <div
         ref={ref}
-        className="h-full w-full select-none cursor-default bg-background overflow-hidden"
+        className="h-full w-full select-none bg-background overflow-hidden"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
