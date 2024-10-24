@@ -8,11 +8,14 @@ Func is a set of opinionated components & hooks used to to create functional ani
 
 ### Functions
 
-Func is built around the concept of functions. A function is a mathematical relation that maps a set of inputs to a set of outputs. In the context of Func, a function is a JavaScript function that takes a single argument `x: number` and returns a single value `y: number`.
+Func is built around the concept of functions. A function is a mathematical relation that maps a set of inputs to a set of outputs. In the context of Func, a function takes a single argument `x: number` and returns a single value `y: number`: `f: (x: number) => number`.
+
+> [!NOTE]
+> Note, that a function can be anything from a simple linear function to a complex trigonometric function.
 
 ### Animations
 
-In the context of Func, an animation is a function that changes over time. An animation is defined by a function `f: (x: number) => number` and a duration `duration: number`. The animation function `f` is evaluated at each time step `t` in the range `[0, duration]` to produce a value `y: number`.
+An animation essentially is a function of input over time. It is defined by a function `f: (x: number) => number` and a duration `duration: number`, where `duration` is the total time it takes for the animation to complete. The animation function `f` is then evaluated at each time step `t` in the range `[0, duration]` to produce a value `y: number`.
 
 ### Components
 
