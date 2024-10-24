@@ -1,6 +1,6 @@
 # Func
 
-Func is a set of opinionated React components used to to create functional animations and interactive visualizations using React.
+Func is a set of opinionated components & hooks used to to create functional animations and interactive visualizations using React.
 
 ![Thumbnai](./assets/thumbnail.png)
 
@@ -38,46 +38,191 @@ npm run dev
 
 Open your browser and navigate to `http://localhost:3000` to open the application.
 
+## Concepts
+
+### Functions
+
+Func is built around the concept of functions. A function is a mathematical relation that maps a set of inputs to a set of outputs. In the context of Func, a function is a JavaScript function that takes a single argument `x: number` and returns a single value `y: number`.
+
+### Animations
+
+In the context of Func, an animation is a function that changes over time. An animation is defined by a function `f: (x: number) => number` and a duration `duration: number`. The animation function `f` is evaluated at each time step `t` in the range `[0, duration]` to produce a value `y: number`.
+
+### Components
+
+Func provides a set of React components that can be used to create animations and visualizations. The core components are:
+
+- `Func`: The main component that wraps the entire application.
+- `Canvas`: A container for drawing primitives like lines, points, and functions.
+- `Grid`: A visual representation of a cartesian coordinate system (optional).
+- `Controls`: A container for controls (optional).
+  - `AnimationControls`: Controls for starting, stopping an animation (optional).
+
+Apart from the core components, Func also provides a set of primitive components that can be used to create visualizations:
+
+- `Point`: A visual representation of a point.
+- `Line`: A visual representation of a line.
+- `Area`: A visual representation of an area.
+- `Function`: A visual representation of a function.
+
 ## Usage
 
 To use the library in your React application, import the necessary components and hooks:
 
 ```typescript
 import { Func } from "@func/components/func/func";
+import { Canvas } from "@func/components/primitives/canvas";
 import { Function } from "@func/components/primitives/function";
+import { Point } from "@func/components/primitives/point";
+
+import { Grid } from "@func/components/primitives/grid"; // (optional)
+import { Controls } from "@func/components/controls/controls"; // (optional)
+import { AnimationControls } from "@func/components/controls/animation-controls"; // (optional)
+
 import { useAnimation } from "@func/hooks/use-animation";
 ```
 
-You can create a simple animated function like this:
+Then, you can use the components and hooks in your application:
 
 ```typescript
-const App = () => {
-  // Define a base function
-  const f = (x: number) => x;
+export const App = () => {
+  // Define the animation function
+  const f = (x: number) => x * Math.sin(x) + Math.cos(x);
 
-  // Define an animation function
-  const g = (x: number) => Math.sin(x) + 0.5;
-
+  // Setup the animation
   const animation = useAnimation({
-    y: g,
+    y: f,
     duration: 5_000, // = 5s
-    range: [-10, 10], // = [-10, 10] on the x-axis
+    range: [-10, 10], // = [0 -> 10] on x-axis
   });
 
   return (
-    <Func>
-      <Canvas>
-        <Grid />
-        <Function y={g} />
-      </Canvas>
+    <div className="dark w-dvw h-dvh">
+      <Func>
+        <Canvas>
+          <Grid />
 
-      <Controls>
-        <AnimationControls animation={animation} />
-      </Controls>
-    </Func>
+          {/* Visualize the base function */}
+          <Function y={f} color="muted" />
+
+          {/* Visualize the animated point */}
+          <Point point={{ x: animation.x, y: animation.y }} />
+        </Canvas>
+
+        <Controls>
+          <AnimationControls animation={animation} />
+        </Controls>
+
+        <Debug />
+      </Func>
+    </div>
   );
 };
 ```
+
+This is a simple example of how you can create an animated point that moves along a given function. Of course, this also works with any other primitive component like `Line`, `Area` or even a `Function`.
+
+Since the library is built around the concept of functions, this can get quite powerful. This effectively allows you to animate a function with another function, or even a function with multiple functions.
+
+Here's an example of animating a function with another function:
+
+```typescript
+export const App = () => {
+  // Define the base function
+  const f = (x: number) => Math.sin(x);
+
+  // Define the animation function
+  const g = (x: number) => x ** 2 * animation.y;
+
+  // Setup the animation
+  const animation = useAnimation({
+    y: f,
+    duration: 5_000, // = 5s
+    range: [-10, 10], // = [0 -> 10] on x-axis
+  });
+
+  return (
+    <div className="dark w-dvw h-dvh">
+      <Func>
+        <Canvas>
+          <Grid />
+
+          {/* Visualize the functions */}
+          <Function y={f} color="muted" />
+          <Function y={g} />
+
+          {/* Visualize the animation's progress */}
+          <Point point={{ x: animation.x, y: animation.y }} />
+        </Canvas>
+
+        <Controls>
+          <AnimationControls animation={animation} />
+        </Controls>
+
+        <Debug />
+      </Func>
+    </div>
+  );
+};
+```
+
+## Advanced Usage
+
+### Operations
+
+Func provides a set of operation functions that can be used to combine multiple functions into a single function. The operation functions are:
+
+- `Operation.COMPOSE`: Composes two functions.
+- `Operation.ADD`: Adds two functions.
+- `Operation.SUBTRACT`: Subtracts two functions.
+- `Operation.MULTIPLY`: Multiplies two functions.
+- `Operation.DIVIDE`: Divides two functions.
+
+To use these operation functions, you can pass them as the `y` prop to the `Function` component:
+
+```typescript
+// ...
+
+import { Operations } from "@func/utils/operations";
+
+// Define the base functions
+const f = (x: number) => Math.sin(x);
+const g = (x: number) => Math.cos(x);
+
+// Compose the functions
+const h = Operations.COMPOSE(f, g);
+
+// ...
+```
+
+### Transformations
+
+Since we're working with functions, we can also apply transformations to them. These transformations can be used to scale, translate, or rotate a function. The transformation functions are:
+
+- `Transformation.IDENTITY`: The identity transformation.
+- `Transformation.TRANSLATE`: Translates a function.
+- `Transformation.REFLECT`: Reflects a function.
+- `Transformation.SCALE`: Scales a function.
+- `Transformation.ROTATE`: Rotates a function.
+- `Transformation.SHEAR`: Shears a function.
+
+To use these transformation functions, you can pass them as the `y` prop to the `Function` component:
+
+```typescript
+// ...
+
+import { Transformations } from "@func/utils/transformations";
+
+// Define the base function
+const f = (x: number) => Math.sin(x);
+
+// Translate the function
+const g = Transformations.TRANSLATE(f, 2, 0);
+
+// ...
+```
+
+Both operations and transformations can be coupled with animations to create even more complex visualizations.
 
 ## Contributing
 

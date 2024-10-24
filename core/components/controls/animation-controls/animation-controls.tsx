@@ -10,7 +10,7 @@ export const AnimationControls = ({ animation }: ControlsProps) => {
   const { isPlaying, start, stop } = animation;
 
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex gap-4 items-center text-muted-foreground">
       <div className="flex gap-1">
         {!isPlaying && (
           <button onClick={start} className="flex gap-1 items-center">

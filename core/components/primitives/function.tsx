@@ -4,9 +4,10 @@ import { FuncContext } from "@core/contexts/func.context";
 
 interface FunctionProps {
   y: (x: number) => number;
+  color?: "primary" | "muted";
 }
 
-export const Function = ({ y: f }: FunctionProps) => {
+export const Function = ({ y: f, color = "primary" }: FunctionProps) => {
   const { origin, rangeX, scale, offsetX, zoom } = useContext(FuncContext);
 
   const [minX, maxX] = rangeX;
@@ -51,7 +52,7 @@ export const Function = ({ y: f }: FunctionProps) => {
       d={path}
       fill="none"
       strokeWidth={2 * zoom}
-      className="stroke-primary"
+      className={`stroke-${color}`}
     />
   );
 };

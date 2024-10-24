@@ -10,9 +10,11 @@ export interface UseAnimationProps {
 
 export const useAnimation = ({ y: func, duration, range }: UseAnimationProps) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [value, setValue] = useState(range[0]);
     const animationRef = useRef<number | null>(null);
     const startTimeRef = useRef<number | null>(null);
+
+    const [x, setX] = useState(range[0]);
+    const [y, setY] = useState(func(x));
 
     const animate = (timestamp: number) => {
         if (!startTimeRef.current) startTimeRef.current = timestamp;
@@ -22,7 +24,9 @@ export const useAnimation = ({ y: func, duration, range }: UseAnimationProps) =>
         const progress = elapsed / duration;
 
         if (progress >= 1) {
-            setValue(func(end));
+            setX(range[0]);
+            setY(func(range[0]));
+
             stop();
 
             return;
@@ -31,7 +35,8 @@ export const useAnimation = ({ y: func, duration, range }: UseAnimationProps) =>
         const x = beginning + (end - beginning) * progress;
         const y = func(x);
 
-        setValue(y);
+        setX(x);
+        setY(y);
 
         animationRef.current = requestAnimationFrame(animate);
     };
@@ -61,5 +66,5 @@ export const useAnimation = ({ y: func, duration, range }: UseAnimationProps) =>
         start();
     }, []);
 
-    return { start, stop, isPlaying, value };
+    return { start, stop, isPlaying, x, y };
 };
