@@ -1,7 +1,5 @@
 # Func
 
-Func is a light-weight, function-based animation library for React.
-
 ![Thumbnail](./assets/thumbnail.png)
 
 ## Concepts
