@@ -1,5 +1,6 @@
 {
   "name": "react-coord",
+  "description": "A react-based functional animation library",
   "private": true,
   "version": "0.0.0",
   "type": "module",

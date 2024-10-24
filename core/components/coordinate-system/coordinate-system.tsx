@@ -51,7 +51,7 @@ export const CoordinateSystem = ({
     <Theme theme={theme}>
       <div
         ref={ref}
-        className="h-full w-full select-none bg-background overflow-hidden"
+        className="h-full w-full select-none cursor-default bg-background overflow-hidden"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -59,6 +59,10 @@ export const CoordinateSystem = ({
         onMouseMove={handleMouseMove}
         onWheel={handleWheel}
       >
+        <div className="absolute grid gap-2 top-0 left-0 p-4">
+          <span className="text-4xl font-bold text-muted-foreground">Func</span>
+        </div>
+
         <CoordinateSystemContext.Provider
           value={{
             origin,

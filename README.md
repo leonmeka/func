@@ -1,50 +1,94 @@
-# React + TypeScript + Vite
+# Func
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Func is a set of opinionated React components used to to create functional animations and interactive visualizations using React.
 
-Currently, two official plugins are available:
+![Thumbnai](./assets/thumbnail.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Make sure you have the following installed:
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js (version 14 or higher)
+- npm or pnpm/yarn
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/leonmeka/func.git
+   cd func
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Development
+
+To start the development server with hot module replacement (HMR), run:
+
+```bash
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Open your browser and navigate to `http://localhost:3000` to open the application.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Usage
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+To use the library in your React application, import the necessary components and hooks:
+
+```typescript
+import { CoordinateSystem } from "@func/components/coordinate-system/coordinate-system";
+import { Function } from "@func/components/primitives/function";
+import { useAnimation } from "@func/hooks/use-animation";
 ```
+
+You can create a simple animated function like this:
+
+```typescript
+const App = () => {
+  // Define a base function
+  const f = (x: number) => x;
+
+  // Define an animation function
+  const g = (x: number) => Math.sin(x) + 0.5;
+
+  const animation = useAnimation({
+    y: g,
+    duration: 5_000, // = 5s
+    range: [-10, 10], // = [-10, 10] on the x-axis
+  });
+
+  return (
+    <CoordinateSystem>
+      <Plot>
+        <Grid />
+        <Function y={g} />
+      </Plot>
+
+      <Controls>
+        <AnimationControls animation={animation} />
+      </Controls>
+    </CoordinateSystem>
+  );
+};
+```
+
+## Contributing
+
+If you have suggestions for improvements or new features, please open an issue or submit a pull request.
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
