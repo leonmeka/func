@@ -45,8 +45,7 @@ export const CoordinateSystem = ({
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;
 
-  const scale =
-    Math.max(width / (maxX - minX), mousePosition.y / (maxY - minY)) * zoom;
+  const scale = Math.max(width / (maxX - minX), height / (maxY - minY)) * zoom;
 
   return (
     <Theme theme={theme}>
