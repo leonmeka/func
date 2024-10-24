@@ -4,6 +4,33 @@ Func is a set of opinionated components & hooks used to to create functional ani
 
 ![Thumbnai](./assets/thumbnail.png)
 
+## Concepts
+
+### Functions
+
+Func is built around the concept of functions. A function is a mathematical relation that maps a set of inputs to a set of outputs. In the context of Func, a function is a JavaScript function that takes a single argument `x: number` and returns a single value `y: number`.
+
+### Animations
+
+In the context of Func, an animation is a function that changes over time. An animation is defined by a function `f: (x: number) => number` and a duration `duration: number`. The animation function `f` is evaluated at each time step `t` in the range `[0, duration]` to produce a value `y: number`.
+
+### Components
+
+Func provides a set of React components that can be used to create animations and visualizations. The core components are:
+
+- `Func`: The main component that wraps the entire application.
+- `Canvas`: A container for drawing primitives like lines, points, and functions.
+- `Grid`: A visual representation of a cartesian coordinate system (optional).
+- `Controls`: A container for controls (optional).
+  - `AnimationControls`: Controls for starting, stopping an animation (optional).
+
+Apart from the core components, Func also provides a set of primitive components that can be used to create visualizations:
+
+- `Point`: A visual representation of a point.
+- `Line`: A visual representation of a line.
+- `Area`: A visual representation of an area.
+- `Function`: A visual representation of a function.
+
 ## Getting Started
 
 ### Prerequisites
@@ -37,33 +64,6 @@ npm run dev
 ```
 
 Open your browser and navigate to `http://localhost:3000` to open the application.
-
-## Concepts
-
-### Functions
-
-Func is built around the concept of functions. A function is a mathematical relation that maps a set of inputs to a set of outputs. In the context of Func, a function is a JavaScript function that takes a single argument `x: number` and returns a single value `y: number`.
-
-### Animations
-
-In the context of Func, an animation is a function that changes over time. An animation is defined by a function `f: (x: number) => number` and a duration `duration: number`. The animation function `f` is evaluated at each time step `t` in the range `[0, duration]` to produce a value `y: number`.
-
-### Components
-
-Func provides a set of React components that can be used to create animations and visualizations. The core components are:
-
-- `Func`: The main component that wraps the entire application.
-- `Canvas`: A container for drawing primitives like lines, points, and functions.
-- `Grid`: A visual representation of a cartesian coordinate system (optional).
-- `Controls`: A container for controls (optional).
-  - `AnimationControls`: Controls for starting, stopping an animation (optional).
-
-Apart from the core components, Func also provides a set of primitive components that can be used to create visualizations:
-
-- `Point`: A visual representation of a point.
-- `Line`: A visual representation of a line.
-- `Area`: A visual representation of an area.
-- `Function`: A visual representation of a function.
 
 ## Usage
 
