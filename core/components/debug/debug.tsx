@@ -6,6 +6,7 @@ export const Debug = () => {
     origin,
     width,
     height,
+    mousePosition,
     rangeX,
     rangeY,
     scale,
@@ -25,6 +26,9 @@ export const Debug = () => {
       </span>
       <span>
         Offset: {offsetX.toFixed(2)}, {offsetY.toFixed(2)}
+      </span>
+      <span>
+        Mouse: {mousePosition.x}, {mousePosition.y}
       </span>
 
       <span>Zoom: {zoom.toFixed(2)}</span>

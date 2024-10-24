@@ -65,6 +65,7 @@ export const CoordinateSystem = ({
             origin,
             width,
             height,
+            mousePosition,
             rangeX,
             rangeY,
             scale,
