@@ -1,15 +1,13 @@
 import { useContext } from "react";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 interface FunctionProps {
   y: (x: number) => number;
 }
 
 export const Function = ({ y: f }: FunctionProps) => {
-  const { origin, rangeX, scale, offsetX, zoom } = useContext(
-    CoordinateSystemContext
-  );
+  const { origin, rangeX, scale, offsetX, zoom } = useContext(FuncContext);
 
   const [minX, maxX] = rangeX;
 

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 import { Point as PointType } from "@core/types";
 
@@ -9,7 +9,7 @@ interface PolygonProps {
 }
 
 export const Area = ({ points }: PolygonProps) => {
-  const { origin, scale, zoom } = useContext(CoordinateSystemContext);
+  const { origin, scale, zoom } = useContext(FuncContext);
 
   return (
     <path

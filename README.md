@@ -43,7 +43,7 @@ Open your browser and navigate to `http://localhost:3000` to open the applicatio
 To use the library in your React application, import the necessary components and hooks:
 
 ```typescript
-import { CoordinateSystem } from "@func/components/coordinate-system/coordinate-system";
+import { Func } from "@func/components/func/func";
 import { Function } from "@func/components/primitives/function";
 import { useAnimation } from "@func/hooks/use-animation";
 ```
@@ -65,16 +65,16 @@ const App = () => {
   });
 
   return (
-    <CoordinateSystem>
-      <Plot>
+    <Func>
+      <Canvas>
         <Grid />
         <Function y={g} />
-      </Plot>
+      </Canvas>
 
       <Controls>
         <AnimationControls animation={animation} />
       </Controls>
-    </CoordinateSystem>
+    </Func>
   );
 };
 ```

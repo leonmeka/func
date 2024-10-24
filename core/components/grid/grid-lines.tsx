@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 import { Axis, Range } from "@core/types";
 
@@ -17,7 +17,7 @@ export const GridLines = ({
   offset,
   svgLength,
 }: GridLineProps) => {
-  const { origin, scale, zoom } = useContext(CoordinateSystemContext);
+  const { origin, scale, zoom } = useContext(FuncContext);
 
   const [min, max] = range;
   const gridLines = [];

@@ -2,14 +2,14 @@ import { useContext } from "react";
 
 import { Point as PointType } from "@core/types";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 interface PointProps {
   point: PointType;
 }
 
 export const Point = ({ point: { x, y } }: PointProps) => {
-  const { origin, scale, zoom } = useContext(CoordinateSystemContext);
+  const { origin, scale, zoom } = useContext(FuncContext);
 
   const X = origin.x + x * scale;
   const Y = origin.y - y * scale;

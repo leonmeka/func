@@ -1,4 +1,4 @@
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 import { useContext } from "react";
 
 export const Debug = () => {
@@ -13,7 +13,7 @@ export const Debug = () => {
     offsetX,
     offsetY,
     zoom,
-  } = useContext(CoordinateSystemContext);
+  } = useContext(FuncContext);
 
   return (
     <div className="grid absolute bottom-0 left-0 p-4 text-muted-foreground text-xs gap-1">

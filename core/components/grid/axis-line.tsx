@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 import { Axis } from "@core/types";
 
@@ -11,7 +11,7 @@ interface AxisLineProps {
 }
 
 export const AxisLine = ({ axis, offset, svgLength }: AxisLineProps) => {
-  const { origin, zoom } = useContext(CoordinateSystemContext);
+  const { origin, zoom } = useContext(FuncContext);
 
   const isXAxis = axis === "x";
 

@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 import { Point, Range } from "@core/types";
 
-interface CoordinateSystemContextProps {
+interface FuncContextProps {
   origin: Point;
   width: number;
   height: number;
@@ -15,7 +15,7 @@ interface CoordinateSystemContextProps {
   zoom: number;
 }
 
-const initialContext: CoordinateSystemContextProps = {
+const initialContext: FuncContextProps = {
   origin: { x: 0, y: 0 },
   width: 0,
   height: 0,
@@ -28,7 +28,6 @@ const initialContext: CoordinateSystemContextProps = {
   zoom: 1,
 };
 
-const CoordinateSystemContext =
-  createContext<CoordinateSystemContextProps>(initialContext);
+const FuncContext = createContext<FuncContextProps>(initialContext);
 
-export { CoordinateSystemContext, initialContext };
+export { FuncContext, initialContext };

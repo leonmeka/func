@@ -1,14 +1,12 @@
 import { useContext } from "react";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 import { GridLines } from "@core/components/grid/grid-lines";
 import { AxisLine } from "@core/components/grid/axis-line";
 
 export const Grid = () => {
-  const { scale, rangeX, rangeY, offsetX, offsetY } = useContext(
-    CoordinateSystemContext
-  );
+  const { scale, rangeX, rangeY, offsetX, offsetY } = useContext(FuncContext);
 
   const [minX, maxX] = rangeX;
   const [minY, maxY] = rangeY;

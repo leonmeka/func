@@ -2,8 +2,8 @@ import { useContext } from "react";
 
 import { Point as PointType } from "@core/types";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
-import { Point } from "@core/components/point";
+import { FuncContext } from "@core/contexts/func.context";
+import { Point } from "@core/components/primitives/point";
 
 interface LineProps {
   from: PointType;
@@ -14,7 +14,7 @@ export const Line = ({
   from: { x: x1, y: y1 },
   to: { x: x2, y: y2 },
 }: LineProps) => {
-  const { origin, scale, zoom } = useContext(CoordinateSystemContext);
+  const { origin, scale, zoom } = useContext(FuncContext);
 
   const X1 = origin.x + x1 * scale;
   const Y1 = origin.y - y1 * scale;

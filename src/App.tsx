@@ -1,7 +1,7 @@
 import { useAnimation } from "@core/hooks/use-animation";
 
-import { CoordinateSystem } from "@core/components/coordinate-system/coordinate-system";
-import { Plot } from "@core/components/plot/plot";
+import { Func } from "@core/components/func/func";
+import { Canvas } from "@core/components/canvas/canvas";
 import { Grid } from "@core/components/grid/grid";
 import { Function } from "@core/components/primitives/function";
 import { Controls } from "@core/components/controls/controls";
@@ -18,22 +18,20 @@ export const App = () => {
     range: [-5, 5],
   });
 
-
   return (
     <div className="dark w-dvw h-dvh">
-      <CoordinateSystem>
-        <Plot>
+      <Func>
+        <Canvas>
           <Grid />
-
           <Function y={g} />
-        </Plot>
+        </Canvas>
 
-        <Controls >
+        <Controls>
           <AnimationControls animation={animation} />
         </Controls>
 
         <Debug />
-      </CoordinateSystem>
+      </Func>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { usePan } from "@core/hooks/use-pan";
 
 import { Range, Theme as ThemeType } from "@core/types";
 
-import { CoordinateSystemContext } from "@core/contexts/coordinate-system.context";
+import { FuncContext } from "@core/contexts/func.context";
 
 import { Theme } from "@core/components/theme/theme";
 import { useMouse } from "@core/hooks/use-mouse";
@@ -19,7 +19,7 @@ interface CoordinateSystemProps {
   rangeY?: Range;
 }
 
-export const CoordinateSystem = ({
+export const Func = ({
   theme = "system",
   rangeX = [-10, 10],
   rangeY = [-10, 10],
@@ -63,7 +63,7 @@ export const CoordinateSystem = ({
           <span className="text-4xl font-bold text-muted-foreground">Func</span>
         </div>
 
-        <CoordinateSystemContext.Provider
+        <FuncContext.Provider
           value={{
             origin,
             width,
@@ -78,7 +78,7 @@ export const CoordinateSystem = ({
           }}
         >
           {children}
-        </CoordinateSystemContext.Provider>
+        </FuncContext.Provider>
       </div>
     </Theme>
   );
