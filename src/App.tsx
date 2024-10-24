@@ -23,7 +23,7 @@ export const App = () => {
 
   return (
     <div className="dark w-dvw h-dvh">
-      <Func debug>
+      <Func>
         <Canvas>
           <Function y={f} color="muted" />
           <Function y={g} />
