@@ -42,32 +42,11 @@ Make sure you have the following installed:
 
 ### Installation
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/leonmeka/func.git
-   cd func
-   ```
-
-2. Install the dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-### Development
-
-To start the development server with hot module replacement (HMR), run:
-
-```bash
-pnpm run dev
-```
-
-Open your browser and navigate to `http://localhost:3000` to open the application.
+TBD
 
 ## Usage
 
-To use the library in your React application, you can import and use the components and hooks in your application:
+To use the library in your React application, simply import and use the components as follows:
 
 ```typescript
 import "func/dist/index.css";
