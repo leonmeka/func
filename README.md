@@ -50,7 +50,15 @@ To use the library in your React application, simply import and use the componen
 
 ```typescript
 import "func/dist/index.css";
-import { Func, Canvas, Function, Point, Controls, AnimationControls, useAnimation } from "func";
+import {
+  Func,
+  Canvas,
+  Function,
+  Point,
+  Controls,
+  AnimationControls,
+  useAnimation,
+} from "func";
 
 export const App = () => {
   // Define the animation function
@@ -91,7 +99,15 @@ Here's an example of animating a function with another function:
 
 ```typescript
 import "func/dist/index.css";
-import { Func, Canvas, Function, Point, Controls, AnimationControls, useAnimation } from "func";
+import {
+  Func,
+  Canvas,
+  Function,
+  Point,
+  Controls,
+  AnimationControls,
+  useAnimation,
+} from "func";
 
 export const App = () => {
   // Define the base function
@@ -132,7 +148,7 @@ export const App = () => {
 
 ### Operations
 
-Func provides a set of operation functions that can be used to combine multiple functions into a single function. The operation functions are:
+Func provides a set of operation functions that can be used to mix multiple functions:
 
 - `Operation.COMPOSE`: Composes two functions.
 - `Operation.ADD`: Adds two functions.
@@ -157,7 +173,7 @@ const h = Operations.COMPOSE(f, g);
 
 ### Transformations
 
-Since we're working with functions, we can also apply transformations to them. These transformations can be used to scale, translate, or rotate a function. The transformation functions are:
+Since we're working with functions, we can also apply transformations to them. These transformations can be used to scale, translate, or rotate, etc., a function:
 
 - `Transformation.IDENTITY`: The identity transformation.
 - `Transformation.TRANSLATE`: Translates a function.
