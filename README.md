@@ -67,23 +67,12 @@ Open your browser and navigate to `http://localhost:3000` to open the applicatio
 
 ## Usage
 
-To use the library in your React application, import the necessary components and hooks:
+To use the library in your React application, you can import and use the components and hooks in your application:
 
 ```typescript
-import { Func } from "./components/func/func";
-import { Canvas } from "./components/primitives/canvas";
-import { Function } from "./components/primitives/function";
-import { Point } from "./components/primitives/point";
+import "func/dist/index.css";
+import { Func, Canvas, Function, Point, Controls, AnimationControls, useAnimation } from "func";
 
-import { Controls } from "./components/controls/controls"; // (optional)
-import { AnimationControls } from "./components/controls/animation-controls"; // (optional)
-
-import { useAnimation } from "./hooks/use-animation";
-```
-
-Then, you can use the components and hooks in your application:
-
-```typescript
 export const App = () => {
   // Define the animation function
   const f = (x: number) => x * Math.sin(x) + Math.cos(x);
@@ -122,6 +111,9 @@ Since the library is built around the concept of functions, this can get quite p
 Here's an example of animating a function with another function:
 
 ```typescript
+import "func/dist/index.css";
+import { Func, Canvas, Function, Point, Controls, AnimationControls, useAnimation } from "func";
+
 export const App = () => {
   // Define the base function
   const f = (x: number) => Math.sin(x);
@@ -172,7 +164,7 @@ Func provides a set of operation functions that can be used to combine multiple 
 ```typescript
 // ...
 
-import { Operations } from "./utils/operations";
+import { Operations } from "func";
 
 // Define the base functions
 const f = (x: number) => Math.sin(x);
@@ -198,7 +190,7 @@ Since we're working with functions, we can also apply transformations to them. T
 ```typescript
 // ...
 
-import { Transformations } from "./utils/transformations";
+import { Transformations } from "func";
 
 // Define the base function
 const f = (x: number) => Math.sin(x);
