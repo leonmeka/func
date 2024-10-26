@@ -38,7 +38,7 @@ Apart from the core components, Func also provides a set of primitives that can 
 Make sure you have the following installed:
 
 - Node.js (version 14 or higher)
-- npm or pnpm/yarn
+- pnpm
 
 ### Installation
 
@@ -52,7 +52,7 @@ Make sure you have the following installed:
 2. Install the dependencies:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 ### Development
@@ -60,7 +60,7 @@ Make sure you have the following installed:
 To start the development server with hot module replacement (HMR), run:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Open your browser and navigate to `http://localhost:3000` to open the application.
