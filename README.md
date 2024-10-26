@@ -70,15 +70,15 @@ Open your browser and navigate to `http://localhost:3000` to open the applicatio
 To use the library in your React application, import the necessary components and hooks:
 
 ```typescript
-import { Func } from "@func/components/func/func";
-import { Canvas } from "@func/components/primitives/canvas";
-import { Function } from "@func/components/primitives/function";
-import { Point } from "@func/components/primitives/point";
+import { Func } from "./components/func/func";
+import { Canvas } from "./components/primitives/canvas";
+import { Function } from "./components/primitives/function";
+import { Point } from "./components/primitives/point";
 
-import { Controls } from "@func/components/controls/controls"; // (optional)
-import { AnimationControls } from "@func/components/controls/animation-controls"; // (optional)
+import { Controls } from "./components/controls/controls"; // (optional)
+import { AnimationControls } from "./components/controls/animation-controls"; // (optional)
 
-import { useAnimation } from "@func/hooks/use-animation";
+import { useAnimation } from "./hooks/use-animation";
 ```
 
 Then, you can use the components and hooks in your application:
@@ -172,7 +172,7 @@ Func provides a set of operation functions that can be used to combine multiple 
 ```typescript
 // ...
 
-import { Operations } from "@func/utils/operations";
+import { Operations } from "./utils/operations";
 
 // Define the base functions
 const f = (x: number) => Math.sin(x);
@@ -198,7 +198,7 @@ Since we're working with functions, we can also apply transformations to them. T
 ```typescript
 // ...
 
-import { Transformations } from "@func/utils/transformations";
+import { Transformations } from "./utils/transformations";
 
 // Define the base function
 const f = (x: number) => Math.sin(x);
