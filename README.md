@@ -92,7 +92,7 @@ export const App = () => {
   const animation = useAnimation({
     y: f,
     duration: 5_000, // = 5s
-    range: [-10, 10], // = [0 -> 10] on x-axis
+    range: [-10, 10], // = [-10 -> 10] on x-axis
   });
 
   return (
@@ -133,7 +133,7 @@ export const App = () => {
   const animation = useAnimation({
     y: f,
     duration: 5_000, // = 5s
-    range: [-10, 10], // = [0 -> 10] on x-axis
+    range: [-10, 10], // = [-10 -> 10] on x-axis
   });
 
   return (

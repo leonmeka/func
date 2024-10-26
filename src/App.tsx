@@ -8,22 +8,19 @@ import { AnimationControls } from "@core/components/controls/animation-controls/
 import { Point } from "@core/components/primitives/point";
 
 export const App = () => {
-  // Define the base function
-  const f = (x: number) => Math.sin(x) * 2;
+  const f = (x: number) => (Math.sinh(x) * 1) / 2;
 
-  // Define the animation function
   const g = (x: number) => x ** 2 * animation.y;
 
-  // Setup the animation
   const animation = useAnimation({
     y: f,
-    duration: 2_000, // = 5s
-    range: [-5, 5], // = [-5 -> 5] on x-axis
+    duration: 2_000,
+    range: [-5, 5],
   });
 
   return (
     <div className="dark w-dvw h-dvh">
-      <Func>
+      <Func debug>
         <Canvas>
           <Function y={f} color="muted" />
           <Function y={g} />
