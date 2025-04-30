@@ -15,6 +15,8 @@ Func is built around the concept of functions. A function is a mathematical rela
 
 An animation essentially is a function of input over time. It is defined by a function `f: (x: number) => number` and a duration `duration: number`, where `duration` is the total time it takes for the animation to complete. The animation function `f` is then evaluated at each time step `t` in a given range `[n, m]` to produce a value `y: number`.
 
+![demo_video](./assets/demo.mp4)
+
 ### Components
 
 Func provides a set of React components that can be used to create animations and visualizations. The core components are:
@@ -42,14 +44,45 @@ Make sure you have the following installed:
 
 ### Installation
 
-TBD
+To install the dependencies, run the following command in the root directory of the project:
+
+```bash
+pnpm install
+```
+
+### Running the Development Server
+
+To start the development server, run the following command:
+
+```bash
+pnpm dev
+```
+
+### Building for Production
+
+To build the project for production, run the following command:
+
+```bash
+pnpm build
+```
+
+This will create a `dist` directory with the production build of the project.
+
+### Running the Production Build
+
+To run the production build, run the following command:
+
+```bash
+pnpm serve
+```
+
+This will start a local server that serves the production build of the project.
 
 ## Usage
 
 To use the library in your React application, simply import and use the components as follows:
 
 ```typescript
-import "func/dist/index.css";
 import {
   Func,
   Canvas,
@@ -98,7 +131,6 @@ Since the library is built around the concept of functions, this can get quite p
 Here's an example of animating a function with another function:
 
 ```typescript
-import "func/dist/index.css";
 import {
   Func,
   Canvas,
