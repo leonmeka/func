@@ -1,25 +1,32 @@
-import { AnimationControls, Canvas, Controls, Function, Func, Point, useAnimation } from "@func/index";
+import {
+  Func,
+  Canvas,
+  Function,
+  Point,
+  Controls,
+  AnimationControls,
+  useAnimation,
+} from "@func/index";
 
 export const App = () => {
-  const f = (x: number) => (Math.sinh(x) * 1) / 2;
+  // Define the animation function
+  const f = (x: number) => x * Math.sin(x) + Math.cos(x);
 
-  const g = (x: number) => x ** 2 * animation.y;
-
+  // Setup the animation
   const animation = useAnimation({
     y: f,
-    duration: 2_000,
-    range: [-5, 5],
+    duration: 5_000, // = 5s
+    range: [-10, 10], // = [-10 -> 10] on x-axis
   });
 
   return (
-    <div style={{
-      width: "100vw",
-      height: "100vh"
-    }}>
-      <Func debug>
+    <div className="w-dvw h-dvh">
+      <Func>
         <Canvas>
+          {/* Visualize the animation function */}
           <Function y={f} color="muted" />
-          <Function y={g} />
+
+          {/* Visualize an animated point */}
           <Point point={{ x: animation.x, y: animation.y }} />
         </Canvas>
 
