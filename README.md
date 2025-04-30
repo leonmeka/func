@@ -15,7 +15,7 @@ Func is built around the concept of functions. A function is a mathematical rela
 
 An animation essentially is a function of input over time. It is defined by a function `f: (x: number) => number` and a duration `duration: number`, where `duration` is the total time it takes for the animation to complete. The animation function `f` is then evaluated at each time step `t` in a given range `[n, m]` to produce a value `y: number`.
 
-![demo_video](./assets/demo.mp4)
+![demo_video](./assets/animation.gif)
 
 ### Components
 
