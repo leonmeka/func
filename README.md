@@ -91,7 +91,7 @@ import {
   Controls,
   AnimationControls,
   useAnimation,
-} from "func";
+} from "@func/index";
 
 export const App = () => {
   // Define the animation function
@@ -139,7 +139,7 @@ import {
   Controls,
   AnimationControls,
   useAnimation,
-} from "func";
+} from "@func/index";
 
 export const App = () => {
   // Define the base function
@@ -191,7 +191,7 @@ Func provides a set of operation functions that can be used to mix multiple func
 ```typescript
 // ...
 
-import { Operations } from "func";
+import { Operations } from "@func/index";
 
 // Define the base functions
 const f = (x: number) => Math.sin(x);
@@ -217,7 +217,7 @@ Since we're working with functions, we can also apply transformations to them. T
 ```typescript
 // ...
 
-import { Transformations } from "func";
+import { Transformations } from "@func/index";
 
 // Define the base function
 const f = (x: number) => Math.sin(x);
