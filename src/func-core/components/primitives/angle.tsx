@@ -64,16 +64,35 @@ export const Angle = ({ lines, radius = 0.5 }: AngleProps) => {
   const largeArc = Math.abs(deltaAngle) > Math.PI ? 1 : 0;
   const sweep = deltaAngle > 0 ? 1 : 0;
 
+  // Calculate degrees and label position
+  const degrees = Math.abs(deltaAngle) * (180 / Math.PI);
+  const midAngle = angle1 + deltaAngle / 2;
+  const labelRadius = r + 16 * zoom;
+  const labelX = vx + labelRadius * Math.cos(midAngle);
+  const labelY = vy + labelRadius * Math.sin(midAngle);
+
   if ([vx, vy, x1, y1, x2, y2].some((v) => Number.isNaN(v) || !isFinite(v))) {
     return null;
   }
 
   return (
-    <path
-      d={`M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} ${sweep} ${x2} ${y2}`}
-      className="stroke-primary"
-      strokeWidth={2 * zoom}
-      fill="none"
-    />
+    <g>
+      <path
+        d={`M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} ${sweep} ${x2} ${y2}`}
+        className="stroke-primary"
+        strokeWidth={2 * zoom}
+        fill="none"
+      />
+      <text
+        x={labelX}
+        y={labelY}
+        className="fill-primary"
+        fontSize={12 * zoom}
+        textAnchor="middle"
+        dominantBaseline="middle"
+      >
+        {Math.round(degrees)}°
+      </text>
+    </g>
   );
 };
