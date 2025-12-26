@@ -10,6 +10,8 @@ export { Line } from "@func/components/primitives/line";
 export { Area } from "@func/components/primitives/area";
 export { Function } from "@func/components/primitives/function";
 export { Circle } from "@func/components/primitives/circle";
+export { Vector } from "@func/components/primitives/vector";
+export { Rect } from "@func/components/primitives/rect";
 
 export { useAnimation } from "@func/hooks/use-animation";
 
