@@ -61,10 +61,10 @@ export const Angle = ({ lines, radius = 0.5 }: AngleProps) => {
   let deltaAngle = angle2 - angle1;
   if (deltaAngle > Math.PI) deltaAngle -= 2 * Math.PI;
   if (deltaAngle < -Math.PI) deltaAngle += 2 * Math.PI;
+
   const largeArc = Math.abs(deltaAngle) > Math.PI ? 1 : 0;
   const sweep = deltaAngle > 0 ? 1 : 0;
 
-  // Calculate degrees and label position
   const degrees = Math.abs(deltaAngle) * (180 / Math.PI);
   const midAngle = angle1 + deltaAngle / 2;
   const labelRadius = r + 16 * zoom;
