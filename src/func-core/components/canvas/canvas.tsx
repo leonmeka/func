@@ -4,14 +4,7 @@ import { FuncContext } from "@func/contexts/func.context";
 
 import { Grid } from "@func/components/grid/grid";
 
-interface CanvasProps {
-  grid?: boolean;
-}
-
-export const Canvas = ({
-  grid = true,
-  children,
-}: PropsWithChildren<CanvasProps>) => {
+export const Canvas = ({ children }: PropsWithChildren) => {
   const { width, height, offsetX, offsetY } = useContext(FuncContext);
 
   return (
@@ -23,7 +16,7 @@ export const Canvas = ({
       ${height}
     `}
     >
-      {grid && <Grid />}
+      <Grid />
       {children}
     </svg>
   );

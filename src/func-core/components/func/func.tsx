@@ -11,6 +11,7 @@ import { FuncContext } from "@func/contexts/func.context";
 
 import { Theme } from "@func/components/theme/theme";
 import { Debug } from "@func/components/debug/debug";
+import { Canvas } from "@/func-core";
 
 interface CoordinateSystemProps {
   theme?: ThemeType;
@@ -74,7 +75,7 @@ export const Func = ({
             zoom,
           }}
         >
-          {children}
+          <Canvas>{children}</Canvas>
           {debug && <Debug />}
         </FuncContext.Provider>
       </div>
