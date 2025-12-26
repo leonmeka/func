@@ -1,10 +1,38 @@
-import { Func, Point } from "@func/index";
+import {
+  AnimationControls,
+  Area,
+  Circle,
+  Controls,
+  Func,
+  Line,
+  Point,
+  useAnimation,
+} from "@func/index";
 
 export const App = () => {
+  const animation = useAnimation({
+    y: (x: number) => x,
+    duration: 1000,
+    range: [0, 1],
+  });
+
   return (
     <div className="w-dvw h-dvh">
-      <Func>
-        <Point point={{ x: 0, y: 0 }} />
+      <Func debug>
+        <Area
+          points={[
+            { x: 0, y: 0 },
+            { x: 0, y: 1 },
+            { x: 1, y: 1 },
+            { x: 1, y: 0 },
+          ]}
+        />
+        <Point point={{ x: animation.x, y: animation.y }} />
+        <Line from={{ x: 0, y: 0 }} to={{ x: animation.x, y: animation.y }} />
+        <Circle center={{ x: animation.x, y: animation.y }} radius={1} />
+        <Controls>
+          <AnimationControls animation={animation} />
+        </Controls>
       </Func>
     </div>
   );

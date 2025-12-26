@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { FuncContext } from "@func/contexts/func.context";
 
 interface PolygonProps {
-  points: { x: number, y: number }[];
+  points: { x: number; y: number }[];
 }
 
 export const Area = ({ points }: PolygonProps) => {
