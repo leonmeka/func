@@ -12,6 +12,7 @@ export { Function } from "@func/components/primitives/function";
 export { Circle } from "@func/components/primitives/circle";
 export { Vector } from "@func/components/primitives/vector";
 export { Rect } from "@func/components/primitives/rect";
+export { Angle } from "@func/components/primitives/angle";
 
 export { useAnimation } from "@func/hooks/use-animation";
 

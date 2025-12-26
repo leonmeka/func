@@ -1,29 +1,27 @@
-import { useContext } from "react";
+import { forwardRef, useContext, useImperativeHandle } from "react";
 
 import { FuncContext } from "@func/contexts/func.context";
 import { Point } from "@func/components/primitives/point";
 
 interface LineProps {
-  from: { x: number, y: number };
-  to: { x: number, y: number };
+  from: { x: number; y: number };
+  to: { x: number; y: number };
 }
 
-export const Line = ({
-  from: { x: x1, y: y1 },
-  to: { x: x2, y: y2 },
-}: LineProps) => {
+export const Line = forwardRef<LineProps, LineProps>(({ from, to }, ref) => {
   const { origin, scale, zoom } = useContext(FuncContext);
 
-  const X1 = origin.x + x1 * scale;
-  const Y1 = origin.y - y1 * scale;
+  useImperativeHandle(ref, () => ({ from, to }), [from, to]);
 
-  const X2 = origin.x + x2 * scale;
-  const Y2 = origin.y - y2 * scale;
+  const X1 = origin.x + from.x * scale;
+  const Y1 = origin.y - from.y * scale;
+  const X2 = origin.x + to.x * scale;
+  const Y2 = origin.y - to.y * scale;
 
   return (
     <g>
-      <Point point={{ x: x1, y: y1 }} />
-      <Point point={{ x: x2, y: y2 }} />
+      <Point point={from} />
+      <Point point={to} />
 
       <path
         d={`M ${X1} ${Y1} L ${X2} ${Y2}`}
@@ -32,4 +30,4 @@ export const Line = ({
       />
     </g>
   );
-};
+});
